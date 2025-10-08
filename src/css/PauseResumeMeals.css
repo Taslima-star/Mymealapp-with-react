@@ -1,0 +1,81 @@
+.pause-container {
+  background: linear-gradient(135deg, #d5f5e3, #b3e5c8);
+  min-height: 100vh;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.pause-logo {
+  width: 100px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.pause-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.pause-card h2, .pause-card h3 {
+  color: #104b45;
+  text-align: center;
+}
+
+.pause-card input, .pause-card select {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #bcd5c8;
+  border-radius: 6px;
+}
+
+button {
+  background: #104b45;
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #0c3c36;
+}
+
+.back-btn {
+  background: #fff;
+  color: #104b45;
+  border: 1px solid #104b45;
+}
+
+.meal-section {
+  border-top: 1px solid #cbe1d7;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.switches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.review-box {
+  background: #f9fff9;
+  border: 1px solid #bcd5c8;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.thankyou {
+  text-align: center;
+}

@@ -1,0 +1,147 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+.welcome-container {
+  height: 100vh; 
+  width: 100%;
+  background-size: cover;         
+  background-position: center;     
+  background-repeat: no-repeat;    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;         
+  align-items: center;             
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  position: relative;
+  padding: 0 1rem; /* for mobile padding */
+}
+
+/* Logo at top center */
+.logo-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo {
+  height: 100px; 
+  width: auto;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+/* Header text styling */
+.welcome-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.welcome-header h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0.2rem 0;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+}
+
+/* Button at bottom center */
+.welcome-button-container {
+  position: center;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.welcome-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff7f50, #ff4500);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.welcome-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  background: linear-gradient(135deg, #ff4500, #ff7f50);
+}
+
+/* Optional: subtle fade-in animation for content */
+.welcome-header, .welcome-button-container {
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* ===========================
+   RESPONSIVE STYLES
+=========================== */
+
+/* Medium devices (tablets) */
+@media (max-width: 992px) {
+  .logo {
+    height: 80px;
+  }
+
+  .welcome-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .welcome-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .welcome-btn {
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Small devices (mobile) */
+@media (max-width: 576px) {
+  .logo {
+    height: 60px;
+  }
+
+  .welcome-header h1 {
+    font-size: 2rem;
+  }
+
+  .welcome-header h2 {
+    font-size: 1rem;
+  }
+
+  .welcome-btn {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+  }
+
+  .welcome-container {
+    padding: 0 0.5rem;
+  }
+}

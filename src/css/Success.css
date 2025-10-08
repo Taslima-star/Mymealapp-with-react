@@ -1,0 +1,95 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e7ece9f6;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Reminder Screen */
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.reminderTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+.paragraph {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 12px;
+  line-height: 20px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.agreeText {
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 8px;
+  color: #000;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #861f6aff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Thank You Screen */
+.logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.check {
+  font-size: 40px;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+.thankyou {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.note {
+  font-size: 14px;
+  color: #555;
+}

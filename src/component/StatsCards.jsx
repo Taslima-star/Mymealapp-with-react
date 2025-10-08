@@ -10,14 +10,14 @@ const StatsCards = () => {
   ];
 
   return (
-    <div className="stats-cards">
+    <>
       {stats.map((stat, index) => (
-        <div key={index} className="card">
+        <div key={index} className="span-3 card">
           <h4>{stat.title}</h4>
           <p>{stat.value}</p>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
