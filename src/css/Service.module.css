@@ -1,0 +1,399 @@
+/* ✅ Page Layout */
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 30px 15px;
+  font-family: "Poppins", sans-serif;
+  animation: fadeIn 0.7s ease;
+}
+
+/* ✅ Title */
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ff4500;
+  margin-bottom: 25px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+
+
+/* ✅ Carousel Image */
+.carouselImg {
+  width: 100%;
+  height: 650px;/*  */
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 30px 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ✅ Title */
+.title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #ff4500;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* ✅ Carousel Styling (no wrapper) */
+.carouselCustom {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.carouselImg {
+  width: 100%;
+  height: 600px;
+  object-fit: contain;
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+/* ✅ White controls & indicators */
+.carouselCustom .carousel-control-prev-icon,
+.carouselCustom .carousel-control-next-icon {
+  filter: invert(1);
+}
+
+.carouselCustom .carousel-indicators [data-coreui-target] {
+  background-color: #ffffff;
+}
+
+/* ✅ Warning box */
+.warning {
+  background-color: rgba(255, 111, 0, 0.1);
+  border: 1px solid rgba(255, 111, 0, 0.3);
+  border-radius: 10px;
+  padding: 15px 20px;
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 25px;
+  text-align: center;
+  max-width: 800px;
+}
+
+/* ✅ Toggle section */
+.toggleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #ff4500;
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* ✅ Note */
+.note {
+  font-size: 14px;
+  color: #555;
+  max-width: 600px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.phoneLink {
+  color: #ff4500;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.phoneLink:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Button */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.proceedBtn {
+  background-color: #ff4500;
+  color: #fff;
+  border: none;
+  font-size: 17px;
+  padding: 14px 36px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.proceedBtn:hover {
+  background-color: #ff5e19;
+  transform: translateY(-2px);
+}
+
+.disabledBtn {
+  background-color: #b6d0c3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ✅ Responsive */
+@media (max-width: 992px) {
+  .carouselImg {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carouselImg {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carouselImg {
+    height: 230px;
+  }
+  .title {
+    font-size: 24px;
+  }
+}
+
+  object-fit: contain;
+  background-color: #ffffff;
+  padding: 20px;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.carouselImg:hover {
+  transform: scale(1.03);
+  opacity: 0.95;
+  cursor: pointer;
+}
+
+/* ✅ Warning Box */
+.warning {
+  background-color: rgba(255, 111, 0, 0.1);
+  border: 1px solid rgba(255, 111, 0, 0.3);
+  border-radius: 10px;
+  padding: 15px 20px;
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-width: 850px;
+  text-align: center;
+}
+
+.brand {
+  font-weight: 700;
+  color: #2e7d5c;
+}
+
+/* ✅ Toggle Section */
+.toggleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #ff4500;
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* ✅ Acknowledge Note */
+.note {
+  font-size: 14px;
+  color: #555;
+  max-width: 600px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.phoneLink {
+  color: #ff4500;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.phoneLink:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Proceed Button Centered */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.proceedBtn {
+  background-color: #ff4500;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  padding: 15px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.proceedBtn:hover {
+  background-color: #ff5714;
+  transform: translateY(-2px);
+}
+
+.disabledBtn {
+  background-color: #b6d0c3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ✅ Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 992px) {
+  .title {
+    font-size: 32px;
+  }
+  .carouselImg {
+    height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+  .carouselImg {
+    height: 320px;
+  }
+  .warning {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 22px;
+  }
+  .carouselImg {
+    height: 240px;
+  }
+  .proceedBtn {
+    font-size: 15px;
+    padding: 12px 28px;
+  }
+  .note {
+    font-size: 13px;
+  }
+}

@@ -1,120 +1,95 @@
-// Service.jsx
 import React, { useState } from "react";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
-import { useNavigate } from "react-router-dom";
-import "../css/Service.css";
+import { CCarousel, CCarouselItem, CImage } from "@coreui/react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import styles from "../css/Service.module.css";
 
-// Import images from src/assets/images
-import meal from "../assets/images/meal.png";
 import service from "../assets/images/service.png";
 import delivery from "../assets/images/delivery.png";
-import roll from "../assets/images/roll.png";
 import features from "../assets/images/features.png";
-import plan from "../assets/images/plan.png";
-import menu from "../assets/images/menu.png";
-import lunch from "../assets/images/lunch.png";
 import dinner from "../assets/images/dinner.png";
+import lunch from "../assets/images/lunch.png";
+import meal from "../assets/images/meal.png";
+import menu from "../assets/images/menu.png";
+import plan from "../assets/images/plan.png";
+import roll from "../assets/images/roll.png";
+import { useNavigate } from "react-router-dom";
 
-const data = [
-  { id: "1", title: "Item", image: meal },
-  { id: "2", title: "Our Services", image: service },
-  { id: "3", title: "Delivery", image: delivery },
-  { id: "4", title: "Rollover", image: roll },
-  { id: "5", title: "Some More Features", image: features },
-  { id: "6", title: "Plan", image: plan },
-  { id: "7", title: "Menu", image: menu },
-  { id: "8", title: "Lunch", image: lunch },
-  { id: "9", title: "Dinner", image: dinner },
-];
+/* ✅ Carousel Component */
+const CarouselSlides = () => {
+  const images = [dinner, delivery, features, service, lunch, meal, menu, plan, roll];
 
-export default function Service() {
+  return (
+    <CCarousel controls indicators interval={2500} className={styles.carouselCustom}>
+      {images.map((img, i) => (
+        <CCarouselItem key={i}>
+          <CImage className={styles.carouselImg} src={img} alt={`slide ${i + 1}`} />
+        </CCarouselItem>
+      ))}
+    </CCarousel>
+  );
+};
+
+/* ✅ Main Service Page */
+const ServicePage = () => {
+  const [acknowledged, setAcknowledged] = useState(false);
   const navigate = useNavigate();
-  const [acknowledgedRefund, setAcknowledgedRefund] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? data.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+  const handleProceed = () => {
+    if (acknowledged) {
+      navigate("/MyMealsOrderForm");
+    }
   };
 
   return (
-    <div className="service-container">
-      <h1>Our Services</h1>
+    <div className={styles.pageContainer}>
+      <h1 className={styles.title}>Our Services</h1>
 
-      <div className="carousel-wrapper">
-        <button className="carousel-btn" onClick={handlePrev}>
-          ◀
-        </button>
+      <CarouselSlides />
 
-        <div className="service-card">
-          <Zoom>
-            <img
-              src={data[currentIndex].image}
-              alt={data[currentIndex].title}
-              className="carousel-image"
-            />
-          </Zoom>
-          <p>{data[currentIndex].title}</p>
-        </div>
-
-        <button className="carousel-btn" onClick={handleNext}>
-          ▶
-        </button>
-      </div>
-
-      <div className="indicator-container">
-        {data.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${currentIndex === index ? "activeDot" : ""}`}
-          />
-        ))}
-      </div>
-
-      <p className="warning-text">
-        Please proceed only if you have confirmed the Delivery Location by
-        MYMEALS Team
+      <p className={styles.warning}>
+        ⚠️ Please proceed only if you have confirmed the Delivery Location with{" "}
+        <span className={styles.brand}>MYMEALS Team</span>.
       </p>
 
-      <div className="switch-container">
-        <label className="switch">
+      <div className={styles.toggleSection}>
+        <label className={styles.switch}>
           <input
             type="checkbox"
-            checked={acknowledgedRefund}
-            onChange={(e) => setAcknowledgedRefund(e.target.checked)}
+            checked={acknowledged}
+            onChange={(e) => setAcknowledged(e.target.checked)}
           />
-          <span className="slider"></span>
+          <span className={styles.slider}></span>
         </label>
-        <p style={{ color: "#fff", maxWidth: "400px" }}>
-          Not confirming the location and proceeding would lead to NON-REFUND
-          if payment is made. <br />
-          If not confirmed, send your Delivery location to{" "}
-          <a href="tel:+917606006111" style={{ color: "#FFD700" }}>
-            +917606006111
-          </a>{" "}
-          or{" "}
+
+        <p className={styles.note}>
+          Proceeding without confirmation may lead to a <b>NON-REFUND</b> if payment is made. If not
+          confirmed, please send your Delivery Location to{" "}
           <a
-            href="https://wa.me/917606006111?text=Hello%20I%20want%20to%20confirm%20my%20delivery%20location"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#FFD700" }}
+            href="tel:+917606006111"
+            className={styles.phoneLink}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              window.open(
+                "https://wa.me/917606006111?text=Hello%20I%20want%20to%20confirm%20my%20delivery%20location"
+              );
+            }}
           >
-            WhatsApp
+            +91 7606006111
           </a>
         </p>
       </div>
 
-      <button
-        className={`fill-form-btn ${!acknowledgedRefund ? "disabled" : ""}`}
-        disabled={!acknowledgedRefund}
-        onClick={() => navigate("/myMealsOrderForm")}
-      >
-        Fill the form
-      </button>
+      <div className={styles.buttonContainer}>
+        <button
+          className={`${styles.proceedBtn} ${!acknowledged ? styles.disabledBtn : ""}`}
+          onClick={handleProceed}
+          disabled={!acknowledged}
+        >
+          Fill the Form
+        </button>
+      </div>
     </div>
   );
-}
+};
+
+export default ServicePage;

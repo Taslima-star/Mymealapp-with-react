@@ -32,7 +32,7 @@ const MyMealsOrderForm = () => {
 
   const handleNext = () => {
     if (payByQR) {
-      navigate("/Customerform");
+      navigate("/CustomerForm");
     } else if (payByCash) {
       navigate("/paycash", {
         state: { plan, deliveryTime, deliveryAddress, pickupAddress },
@@ -43,35 +43,57 @@ const MyMealsOrderForm = () => {
   };
 
   return (
-    <div className="form-container">
-      <h1 className="form-title">mymeals</h1>
+    <div className="mymeals-form-container">
+      <h1 className="mymeals-form-title">MyMeals Order Form</h1>
 
-      <div className="input-group">
+      <div className="mymeals-input-group">
         <label>Name *</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <input
+          type="text"
+          placeholder="Enter your full name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
 
-      <div className="input-group">
+      <div className="mymeals-input-group">
         <label>Phone No *</label>
-        <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <input
+          type="tel"
+          placeholder="Enter phone number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
       </div>
 
-      <div className="input-group">
+      <div className="mymeals-input-group">
         <label>Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input
+          type="email"
+          placeholder="Enter email (optional)"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
 
-      <div className="input-group">
+      <div className="mymeals-input-group">
         <label>Pick up from *</label>
-        <input type="text" value={pickupFrom} onChange={(e) => setPickupFrom(e.target.value)} />
+        <input
+          type="text"
+          value={pickupFrom}
+          onChange={(e) => setPickupFrom(e.target.value)}
+        />
       </div>
 
-      <div className="input-group">
+      <div className="mymeals-input-group">
         <label>Pick up address *</label>
-        <textarea value={pickupAddress} onChange={(e) => setPickupAddress(e.target.value)} />
+        <textarea
+          value={pickupAddress}
+          onChange={(e) => setPickupAddress(e.target.value)}
+        />
       </div>
 
-      <div className="input-group">
+      <div className="mymeals-input-group">
         <label>Delivery address *</label>
         <textarea
           value={deliveryAddress}
@@ -80,31 +102,38 @@ const MyMealsOrderForm = () => {
         />
       </div>
 
-      {/* Map Preview */}
-      <div className="map-container">
+      {/* 🗺️ Elegant Map Preview */}
+      <div
+        className={`mymeals-map-container ${
+          deliveryAddress ? "active" : ""
+        }`}
+      >
         {deliveryAddress ? (
           <iframe
             title="Delivery Location"
-            width="100%"
-            height="250"
             frameBorder="0"
-            style={{ border: 0, borderRadius: "8px" }}
             src={`https://www.google.com/maps?q=${encodeURIComponent(
               deliveryAddress
             )}&output=embed`}
             allowFullScreen
           ></iframe>
         ) : (
-          <p className="map-placeholder">Enter delivery address to see map</p>
+          <p className="mymeals-map-placeholder">
+            🗺️ Enter delivery address to preview map
+          </p>
         )}
       </div>
 
-      <div className="input-group">
+      <div className="mymeals-input-group">
         <label>Delivery Time (other than ASAP) *</label>
-        <input type="time" value={deliveryTime} onChange={(e) => setDeliveryTime(e.target.value)} />
+        <input
+          type="time"
+          value={deliveryTime}
+          onChange={(e) => setDeliveryTime(e.target.value)}
+        />
       </div>
 
-      <div className="input-group">
+      <div className="mymeals-input-group">
         <label>Select Plan *</label>
         <select value={plan} onChange={(e) => setPlan(e.target.value)}>
           <option value="">Select Plan</option>
@@ -116,16 +145,16 @@ const MyMealsOrderForm = () => {
       </div>
 
       {!showPaymentOptions && (
-        <button className="btn" onClick={handleProceedToPayment}>
-          Proceed to payment
+        <button className="mymeals-btn" onClick={handleProceedToPayment}>
+          Proceed to Payment
         </button>
       )}
 
       {showPaymentOptions && (
-        <div className="payment-container">
-          <h2>Choose Payment Method</h2>
+        <div className="mymeals-payment-container">
+          <h2 className="mymeals-payment-title">Choose Payment Method</h2>
 
-          <div className="option-row">
+          <div className="mymeals-option-row">
             <input
               type="checkbox"
               checked={payByQR}
@@ -134,10 +163,12 @@ const MyMealsOrderForm = () => {
                 if (e.target.checked) setPayByCash(false);
               }}
             />
-            <span className="option-text">Pay through QR code (Best in accountability)</span>
+            <span className="mymeals-option-text">
+              Pay through QR code (Best in accountability)
+            </span>
           </div>
 
-          <div className="option-row">
+          <div className="mymeals-option-row">
             <input
               type="checkbox"
               checked={payByCash}
@@ -146,11 +177,13 @@ const MyMealsOrderForm = () => {
                 if (e.target.checked) setPayByQR(false);
               }}
             />
-            <span className="option-text">Pay Cash (Not recommended)</span>
+            <span className="mymeals-option-text">
+              Pay Cash (Not recommended)
+            </span>
           </div>
 
           {(payByQR || payByCash) && (
-            <button className="btn" onClick={handleNext}>
+            <button className="mymeals-btn" onClick={handleNext}>
               Next
             </button>
           )}

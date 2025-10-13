@@ -15,11 +15,11 @@ export default function Success() {
   };
 
   return (
-    <div className="container">
+    <div className="success-container">
       {step === "reminder" ? (
-        <div className="reminder-screen">
+        <div className="card">
           <h1 className="title">Thank you for your payment!</h1>
-          <p className="subtitle">and sharing the screenshot..</p>
+          <p className="subtitle">and for sharing the screenshot 📸</p>
 
           <h2 className="reminderTitle">Important Reminder ⚠️</h2>
 
@@ -30,8 +30,8 @@ export default function Success() {
           </p>
 
           <p className="paragraph">
-            Kindly ensure that the amount paid matches the total shown in the
-            <span className="bold"> "Amount Paid"</span> section to avoid any issues.
+            Kindly ensure that the amount paid matches the
+            <span className="bold"> “Amount Paid”</span> section to avoid any issues.
           </p>
 
           <p className="paragraph">We appreciate your understanding! 🙏</p>
@@ -43,11 +43,11 @@ export default function Success() {
               onChange={() => setAgree(!agree)}
               id="agree"
             />
-            <label htmlFor="agree" className="agreeText">Yes I Agree</label>
+            <label htmlFor="agree" className="agreeText">Yes, I Agree</label>
           </div>
 
           <button
-            className="button"
+            className={`button ${agree ? "active" : ""}`}
             onClick={handleAgree}
             disabled={!agree}
           >
@@ -55,10 +55,10 @@ export default function Success() {
           </button>
         </div>
       ) : (
-        <div className="thankyou-screen">
+        <div className="thankyou-card">
           <img src={logo} alt="Logo" className="logo" />
           <div className="check">✔</div>
-          <h1 className="thankyou">Thank you</h1>
+          <h1 className="thankyou">Thank You!</h1>
           <p className="note">
             We will review your payment and get back to you via email shortly.
           </p>

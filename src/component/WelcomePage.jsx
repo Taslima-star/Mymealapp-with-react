@@ -1,33 +1,47 @@
 import React from "react";
-import "../css/WelcomePage.css";
+import { useNavigate } from "react-router-dom";
+import styles from "../css/WelcomePage.module.css"; // CSS Module
 import logo from "../assets/images/logo.png";
-import bg from "../assets/images/bg.png"; // ✅ import background
+import bg from "../assets/images/bg.png";
 
 const WelcomePage = () => {
-  const handleWelcomeClick = () => {
-    alert("Welcome! Redirecting to login...");
+  const navigate = useNavigate();
+
+  const handleWelcomeClick = (action) => {
+    if (action === "Service") navigate("/service");
+    else if (action === "login") navigate("/login");
   };
 
   return (
     <div
-      className="welcome-container"
-      style={{
-        backgroundImage: `url(${bg})`, // ✅ use imported bg
-      }}
+      className={styles.welcomeContainer}
+      style={{ backgroundImage: `url(${bg})` }}
     >
-      <div className="logo-container">
-        <img src={logo} alt="Logo" className="logo" />
+      {/* Logo */}
+      <div className={styles.logoContainer}>
+        <img src={logo} alt="Logo" className={styles.logo} />
       </div>
 
-      <header className="welcome-header">
-        <h1><b>Healthy Meal</b></h1>
+      {/* Header */}
+      <header className={styles.welcomeHeader}>
+        <h1>Healthy Meal</h1>
         <h2>We say it's healthy ...</h2>
-        <h2><b>We mean it ...</b></h2>
+        <h2>We mean it ...</h2>
       </header>
 
-      <div className="welcome-button-container">
-        <button className="welcome-btn" onClick={handleWelcomeClick}>
-          Welcome
+      {/* Buttons */}
+      <div className={styles.buttonContainer}>
+        <button
+          className={styles.signupBtn}
+          onClick={() => handleWelcomeClick("Service")}
+        >
+          Sign Up
+        </button>
+        <button
+          className={styles.loginBtn}
+          onClick={() => handleWelcomeClick("login")}
+        >
+          Login
         </button>
       </div>
     </div>

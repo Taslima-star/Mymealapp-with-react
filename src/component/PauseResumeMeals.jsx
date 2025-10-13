@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/PauseResumeMeals.css";
+import logo from "../assets/images/logo.png";
 
 const planToMeals = (plan) => {
   switch (plan) {
@@ -75,7 +76,8 @@ export default function PauseResumeMeals() {
 
   return (
     <div className="pause-container">
-      <img src="/logo192.png" alt="logo" className="pause-logo" />
+      <img src={logo} alt="logo" className="pause-logo" />
+
       {step === 1 && (
         <div className="pause-card">
           <h2>PAUSE AND RESUME YOUR MEAL</h2>
@@ -105,8 +107,14 @@ export default function PauseResumeMeals() {
           />
 
           <label>Select Plan *</label>
-          <select value={plan} onChange={(e) => setPlan(e.target.value)}>
-            <option value="">Select a plan</option>
+          <select
+            value={plan}
+            onChange={(e) => setPlan(e.target.value)}
+            required
+          >
+            <option value="" disabled hidden>
+              Select a plan
+            </option>
             <option value="1">Combo Lunch & Dinner</option>
             <option value="2">Combo Lunch, Dinner & Breakfast</option>
             <option value="3">Monthly Lunch</option>
@@ -148,7 +156,7 @@ export default function PauseResumeMeals() {
                     {m.pause && (
                       <input
                         type="date"
-                        value={m.dates.pause ? m.dates.pause : ""}
+                        value={m.dates.pause || ""}
                         onChange={(e) => setMealDate(meal, "pause", e.target.value)}
                       />
                     )}
@@ -164,7 +172,7 @@ export default function PauseResumeMeals() {
                     {m.resume && (
                       <input
                         type="date"
-                        value={m.dates.resume ? m.dates.resume : ""}
+                        value={m.dates.resume || ""}
                         onChange={(e) => setMealDate(meal, "resume", e.target.value)}
                       />
                     )}

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import "../css/RenewalForm.css";
 import logo from "../assets/images/logo.png";
-
+import "../css/RenewalForm.css"; // component-specific CSS
 
 const RenewalForm = () => {
   const [orderNo, setOrderNo] = useState("");
@@ -20,7 +19,6 @@ const RenewalForm = () => {
       const formData = { orderNo, location };
       console.log("Form Data:", formData);
 
-      // You can replace this with your API call logic
       alert("Form submitted successfully!");
       setOrderNo("");
       setLocation("Old");
@@ -28,41 +26,41 @@ const RenewalForm = () => {
   };
 
   return (
-    <div className="renewal-container">
-      <div className="form-wrapper">
-        {/* Logo */}
-        <div className="logo-container">
-          <img src={logo} alt="Logo" className="logo" />
-
+    <div className="renewalForm-container">
+      <div className="renewalForm-wrapper">
+        <div className="renewalForm-logoContainer">
+          <img src={logo} alt="Logo" className="renewalForm-logo" />
         </div>
 
-        <h2 className="heading">Renewal</h2>
+        <h2 className="renewalForm-heading">Renewal</h2>
 
         <form onSubmit={handleSubmit}>
-          {/* Order No */}
-          <div className="form-group">
-            <label htmlFor="orderNo">Order No *</label>
+          <div className="renewalForm-group">
+            <label htmlFor="orderNo" className="renewalForm-label">
+              Order No *
+            </label>
             <input
               type="number"
               id="orderNo"
-              className="input"
+              className="renewalForm-input"
               value={orderNo}
               onChange={(e) => setOrderNo(e.target.value)}
               placeholder="Enter order number"
             />
-            {errors.orderNo && <p className="error-text">{errors.orderNo}</p>}
+            {errors.orderNo && (
+              <p className="renewalForm-error">{errors.orderNo}</p>
+            )}
           </div>
 
-          {/* Location Selection */}
-          <label className="label">Location *</label>
-          <p className="subtext">
+          <label className="renewalForm-label">Location *</label>
+          <p className="renewalForm-subtext">
             Please proceed only if you are continuing with the same delivery
             location or have confirmed the new delivery location with the
             MYMEALS team.
           </p>
 
-          <div className="radio-group">
-            <label className="radio-row">
+          <div className="renewalForm-radioGroup">
+            <label className="renewalForm-radioRow">
               <input
                 type="radio"
                 name="location"
@@ -72,7 +70,7 @@ const RenewalForm = () => {
               />
               Old
             </label>
-            <label className="radio-row">
+            <label className="renewalForm-radioRow">
               <input
                 type="radio"
                 name="location"
@@ -84,8 +82,7 @@ const RenewalForm = () => {
             </label>
           </div>
 
-          {/* Submit */}
-          <button type="submit" className="submit-btn">
+          <button type="submit" className="renewalForm-submitBtn">
             Submit
           </button>
         </form>

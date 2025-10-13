@@ -28,11 +28,11 @@ const MenuModal = () => {
           Change Your Delivery Location
         </button>
 
-        <button className="menu-button" onClick={() => alert("Update contact number feature coming soon!")}>
+        <button className="menu-button" onClick={() => navigate("/UpdateContactForm")}>
           Update Contact No.
         </button>
 
-        <button className="menu-button" onClick={() => alert("Complaint form coming soon!")}>
+        <button className="menu-button" onClick={() => navigate("/Complaint")}>
           Raise a Complaint
         </button>
 

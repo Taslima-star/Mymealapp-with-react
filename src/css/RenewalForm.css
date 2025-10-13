@@ -1,4 +1,4 @@
-.renewal-container {
+.renewalForm-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +8,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-.form-wrapper {
+.renewalForm-wrapper {
   background-color: #ffffff;
   border-radius: 16px;
   padding: 25px 20px;
@@ -18,17 +18,17 @@
   border: 1px solid #e0e0e0;
 }
 
-.logo-container {
+.renewalForm-logoContainer {
   text-align: center;
   margin-bottom: 10px;
 }
 
-.logo {
+.renewalForm-logo {
   width: 140px;
   height: 80px;
 }
 
-.heading {
+.renewalForm-heading {
   text-align: center;
   font-size: 24px;
   font-weight: 700;
@@ -36,17 +36,17 @@
   color: #720856;
 }
 
-.form-group {
+.renewalForm-group {
   margin-bottom: 20px;
 }
 
-.label {
+.renewalForm-label {
   font-weight: 600;
   display: block;
   margin-bottom: 5px;
 }
 
-.input {
+.renewalForm-input {
   width: 100%;
   padding: 12px 14px;
   border: 1px solid #ccc;
@@ -56,18 +56,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.subtext {
+.renewalForm-subtext {
   font-size: 13px;
   color: #777;
   margin-bottom: 10px;
 }
 
-.radio-group {
+.renewalForm-radioGroup {
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
-.radio-row {
+.renewalForm-radioRow {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -75,11 +75,11 @@
   cursor: pointer;
 }
 
-.radio-row input {
+.renewalForm-radioRow input {
   margin-right: 8px;
 }
 
-.submit-btn {
+.renewalForm-submitBtn {
   background-color: #4caf50;
   color: white;
   font-weight: 600;
@@ -91,12 +91,33 @@
   transition: background-color 0.3s ease;
 }
 
-.submit-btn:hover {
+.renewalForm-submitBtn:hover {
   background-color: #3f9443;
 }
 
-.error-text {
+.renewalForm-error {
   color: red;
   font-size: 13px;
   margin-top: 5px;
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 480px) {
+  .renewalForm-wrapper {
+    padding: 20px 15px;
+  }
+
+  .renewalForm-heading {
+    font-size: 20px;
+  }
+
+  .renewalForm-input {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .renewalForm-submitBtn {
+    padding: 10px;
+    font-size: 14px;
+  }
 }

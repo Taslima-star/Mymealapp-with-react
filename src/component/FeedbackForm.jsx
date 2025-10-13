@@ -4,13 +4,20 @@ import logo from "../assets/images/logo.png";
 
 const FeedbackForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [orderNo, setOrderNo] = useState("");
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [plan, setPlan] = useState("");
-  const [feedbackText, setFeedbackText] = useState("");
+  const [formData, setFormData] = useState({
+    orderNo: "",
+    name: "",
+    phoneNumber: "",
+    plan: "",
+    feedbackText: "",
+    selectedDate: "",
+  });
   const [errors, setErrors] = useState({});
-  const [selectedDate, setSelectedDate] = useState("");
+  const [ratings, setRatings] = useState({
+    food: { rating: "", feedback: "" },
+    delivery: { rating: "", feedback: "" },
+    management: { rating: "", feedback: "" },
+  });
 
   const plans = [
     { label: "Combo Lunch and Dinner", value: "combo_lunch_dinner" },
@@ -21,20 +28,18 @@ const FeedbackForm = () => {
   ];
 
   const ratingOptions = ["Excellent", "Good", "Average", "Poor"];
-  const [foodRating, setFoodRating] = useState("");
-  const [foodFeedback, setFoodFeedback] = useState("");
-  const [deliveryRating, setDeliveryRating] = useState("");
-  const [deliveryFeedback, setDeliveryFeedback] = useState("");
-  const [managementRating, setManagementRating] = useState("");
-  const [managementFeedback, setManagementFeedback] = useState("");
+
+  const handleChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+  };
 
   const validateFields = () => {
     const newErrors = {};
-    if (!orderNo.trim()) newErrors.orderNo = "Order number is required";
-    if (!name.trim()) newErrors.name = "Name is required";
-    if (!phoneNumber.trim()) newErrors.phoneNumber = "Phone number is required";
-    if (!plan) newErrors.plan = "Please select a plan";
-    if (!feedbackText.trim()) newErrors.feedbackText = "Please write your overall feedback";
+    if (!formData.orderNo.trim()) newErrors.orderNo = "Order number is required";
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.phoneNumber.trim()) newErrors.phoneNumber = "Phone number is required";
+    if (!formData.plan) newErrors.plan = "Please select a plan";
+    if (!formData.feedbackText.trim()) newErrors.feedbackText = "Please provide overall feedback";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -42,125 +47,139 @@ const FeedbackForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateFields()) return;
-
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
-      setOrderNo(""); setName(""); setPhoneNumber(""); setPlan("");
-      setFoodRating(""); setFoodFeedback(""); setDeliveryRating(""); setDeliveryFeedback("");
-      setManagementRating(""); setManagementFeedback(""); setFeedbackText(""); setSelectedDate("");
+      setFormData({ orderNo: "", name: "", phoneNumber: "", plan: "", feedbackText: "", selectedDate: "" });
+      setRatings({ food: {}, delivery: {}, management: {} });
     }, 3000);
   };
 
   if (isSubmitted) {
     return (
       <div className="thankYouContainer">
-        <h2 className="thankYouText">🎉 Thank You for Your Feedback! 🎉</h2>
+        <h2 className="thankYouText">🎉 Thank You for Your Valuable Feedback! 🎉</h2>
+        <p className="thankYouNote">Your response helps us improve our services!</p>
       </div>
     );
   }
 
   return (
-    <div className="form-container">
-      {/* Logo */}
-      <div className="logo-container">
-        <img src={logo} alt="Logo" className="logo" />
-      </div>
-
-      <h2 className="title">Feedback Form</h2>
-
-      <form onSubmit={handleSubmit}>
-        {/* Order No */}
-        <div className="input-wrapper">
-          <i className="fas fa-receipt"></i>
-          <input
-            type="text"
-            className="input"
-            placeholder="Order no. *"
-            value={orderNo}
-            onChange={(e) => setOrderNo(e.target.value)}
-          />
+    <div className="feedback-wrapper">
+      <div className="feedback-card">
+        <div className="header">
+          <img src={logo} alt="Logo" className="logo" />
+          <h2 className="title">Customer Feedback Form</h2>
         </div>
-        {errors.orderNo && <p className="errorText">{errors.orderNo}</p>}
 
-        {/* Name */}
-        <div className="input-wrapper">
-          <i className="fas fa-user"></i>
-          <input
-            type="text"
-            className="input"
-            placeholder="Name *"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        {errors.name && <p className="errorText">{errors.name}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-grid">
+            <div>
+              <input
+                type="text"
+                placeholder="Order No.*"
+                value={formData.orderNo}
+                onChange={(e) => handleChange("orderNo", e.target.value)}
+                className="input"
+              />
+              {errors.orderNo && <p className="errorText">{errors.orderNo}</p>}
+            </div>
 
-        {/* Phone Number */}
-        <div className="input-wrapper">
-          <i className="fas fa-phone"></i>
-          <input
-            type="tel"
-            className="input"
-            placeholder="Phone number *"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-        </div>
-        {errors.phoneNumber && <p className="errorText">{errors.phoneNumber}</p>}
+            <div>
+              <input
+                type="text"
+                placeholder="Name*"
+                value={formData.name}
+                onChange={(e) => handleChange("name", e.target.value)}
+                className="input"
+              />
+              {errors.name && <p className="errorText">{errors.name}</p>}
+            </div>
 
-        {/* Plan Selection */}
-        <select className="dropdown" value={plan} onChange={(e) => setPlan(e.target.value)}>
-          <option value="">Select your plan *</option>
-          {plans.map((p) => (
-            <option key={p.value} value={p.value}>{p.label}</option>
-          ))}
-        </select>
-        {errors.plan && <p className="errorText">{errors.plan}</p>}
+            <div>
+              <input
+                type="tel"
+                placeholder="Phone Number*"
+                value={formData.phoneNumber}
+                onChange={(e) => handleChange("phoneNumber", e.target.value)}
+                className="input"
+              />
+              {errors.phoneNumber && <p className="errorText">{errors.phoneNumber}</p>}
+            </div>
 
-        {/* Feedback Sections */}
-        {[
-          { name: "Food", rating: foodRating, setRating: setFoodRating, feedback: foodFeedback, setFeedback: setFoodFeedback },
-          { name: "Delivery", rating: deliveryRating, setRating: setDeliveryRating, feedback: deliveryFeedback, setFeedback: setDeliveryFeedback },
-          { name: "Management", rating: managementRating, setRating: setManagementRating, feedback: managementFeedback, setFeedback: setManagementFeedback },
-        ].map((section) => (
-          <div className="sectionCard" key={section.name}>
-            <h3 className="sectionTitle">{section.name}</h3>
-            <select className="dropdown" value={section.rating} onChange={(e) => section.setRating(e.target.value)}>
-              <option value="">Rate {section.name}</option>
-              {ratingOptions.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
-            </select>
-            <textarea
-              className="textArea"
-              placeholder={`Write about ${section.name.toLowerCase()}...`}
-              value={section.feedback}
-              onChange={(e) => section.setFeedback(e.target.value)}
-            />
+            <div>
+              <select
+                className="input"
+                value={formData.plan}
+                onChange={(e) => handleChange("plan", e.target.value)}
+              >
+                <option value="">Select Plan*</option>
+                {plans.map((p) => (
+                  <option key={p.value} value={p.value}>
+                    {p.label}
+                  </option>
+                ))}
+              </select>
+              {errors.plan && <p className="errorText">{errors.plan}</p>}
+            </div>
           </div>
-        ))}
 
-        {/* Overall Feedback */}
-        <label className="label">Overall Feedback</label>
-        <textarea
-          className="textArea"
-          placeholder="Type your overall view..."
-          value={feedbackText}
-          onChange={(e) => setFeedbackText(e.target.value)}
-        />
-        {errors.feedbackText && <p className="errorText">{errors.feedbackText}</p>}
+          {["Food", "Delivery", "Management"].map((section) => (
+            <div className="sectionCard" key={section}>
+              <h3 className="sectionTitle">{section} Feedback</h3>
+              <select
+                className="input"
+                value={ratings[section.toLowerCase()]?.rating || ""}
+                onChange={(e) =>
+                  setRatings({
+                    ...ratings,
+                    [section.toLowerCase()]: { ...ratings[section.toLowerCase()], rating: e.target.value },
+                  })
+                }
+              >
+                <option value="">Rate {section}</option>
+                {ratingOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+              <textarea
+                className="textArea"
+                placeholder={`Write about ${section.toLowerCase()}...`}
+                value={ratings[section.toLowerCase()]?.feedback || ""}
+                onChange={(e) =>
+                  setRatings({
+                    ...ratings,
+                    [section.toLowerCase()]: { ...ratings[section.toLowerCase()], feedback: e.target.value },
+                  })
+                }
+              />
+            </div>
+          ))}
 
-        {/* Optional Date */}
-        <label className="label">Date (Optional)</label>
-        <input
-          type="date"
-          className="dateButton"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-        />
+          <label className="label">Overall Feedback*</label>
+          <textarea
+            className="textArea"
+            placeholder="Type your overall view..."
+            value={formData.feedbackText}
+            onChange={(e) => handleChange("feedbackText", e.target.value)}
+          />
+          {errors.feedbackText && <p className="errorText">{errors.feedbackText}</p>}
 
-        {/* Submit */}
-        <button type="submit" className="submitButton">Submit Feedback</button>
-      </form>
+          <label className="label">Date (Optional)</label>
+          <input
+            type="date"
+            className="input"
+            value={formData.selectedDate}
+            onChange={(e) => handleChange("selectedDate", e.target.value)}
+          />
+
+          <button type="submit" className="submitButton">
+            Submit Feedback
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
