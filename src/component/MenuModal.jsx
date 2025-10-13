@@ -20,7 +20,7 @@ const MenuModal = () => {
           Renewal
         </button>
 
-        <button className="menu-button" onClick={() => alert("Change meal preference feature coming soon!")}>
+        <button className="menu-button" onClick={() => navigate("/MealPreferenceForm")}>
           Change Your Meal Preference
         </button>
 

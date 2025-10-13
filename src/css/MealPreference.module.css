@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eaf9f3, #c9e8da);
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+}
+
+/* ---------- Card ---------- */
+.formCard {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 45px 40px;
+  width: 100%;
+  max-width: 500px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Logo ---------- */
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.logoCircle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 12px rgba(56, 180, 123, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.logoCircle:hover {
+  transform: rotate(3deg) scale(1.05);
+}
+
+.logoText {
+  color: #36b37e;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+/* ---------- Title ---------- */
+.title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2b5a44;
+  margin-bottom: 25px;
+}
+
+/* ---------- Inputs ---------- */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.inputGroup label {
+  font-weight: 500;
+  color: #344e41;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.inputGroup input,
+.inputGroup select {
+  border: 1.5px solid #d7e8df;
+  border-radius: 10px;
+  padding: 11px 13px;
+  font-size: 0.95rem;
+  color: #333;
+  outline: none;
+  background-color: #fdfdfd;
+  transition: all 0.25s ease;
+}
+
+.inputGroup input:focus,
+.inputGroup select:focus {
+  border-color: #4bb883;
+  box-shadow: 0 0 6px rgba(75, 184, 131, 0.3);
+  background-color: #ffffff;
+}
+
+/* ---------- Input with Icon ---------- */
+.iconInput {
+  position: relative;
+}
+
+.iconInput input {
+  width: 100%;
+  padding-left: 40px;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #4bb883;
+}
+
+/* ---------- Buttons ---------- */
+.primaryBtn {
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 22px;
+  font-size: 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #43b57a, #34a26e);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(67, 181, 122, 0.25);
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.primaryBtn:hover {
+  background: linear-gradient(135deg, #36a46d, #2e8d5f);
+  box-shadow: 0 6px 16px rgba(67, 181, 122, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ---------- Summary Box ---------- */
+.summaryBox {
+  background-color: #f5faf7;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #d9efe2;
+  margin-top: 20px;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #d5e8dc;
+}
+
+.summaryItem:last-child {
+  border-bottom: none;
+}
+
+.summaryLabel {
+  color: #3b6452;
+  font-weight: 500;
+}
+
+.summaryValue {
+  color: #2a2a2a;
+}
+
+/* ---------- Thank You ---------- */
+.thankyouBox {
+  text-align: center;
+  color: #2e5b45;
+  margin-top: 25px;
+}
+
+.thankyouBox p {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .formCard {
+    padding: 35px 25px;
+    border-radius: 16px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .logoCircle {
+    width: 75px;
+    height: 75px;
+  }
+
+  .logoText {
+    font-size: 18px;
+  }
+
+  .primaryBtn {
+    font-size: 0.95rem;
+    padding: 11px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formContainer {
+    padding: 15px;
+  }
+
+  .formCard {
+    padding: 28px 18px;
+  }
+
+  .inputGroup label {
+    font-size: 0.9rem;
+  }
+
+  .inputGroup input,
+  .inputGroup select {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+
+  .primaryBtn {
+    font-size: 0.9rem;
+    padding: 10px 16px;
+  }
+}

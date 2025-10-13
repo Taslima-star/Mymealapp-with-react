@@ -1,0 +1,226 @@
+/* 🌿 Page Container */
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, #f0fdf4, #e6f7eb);
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+}
+
+/* 🌿 Form Box */
+.formBox {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formBox:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* 🌿 Logo */
+.logoContainer {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.logo {
+  width: 140px;
+  height: auto;
+}
+
+/* 🌿 Heading */
+.heading {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #720856;
+  margin-bottom: 25px;
+}
+
+/* 🌿 Labels & Subtext */
+.label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.subtext {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.brand {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+/* 🌿 Inputs */
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+/* 🌿 Radio Group */
+.radioGroup {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 25px;
+  justify-content: center;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #333;
+}
+
+/* 🌿 Submit Button */
+.submitBtn {
+  width: 100%;
+  background: #4caf50;
+  color: #fff;
+  padding: 14px 0;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submitBtn:hover {
+  background: #3e8e41;
+  transform: scale(1.02);
+}
+
+/* 🌿 Thank You Screen */
+.thankYouContainer {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #f0fdf4, #e6f7eb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.thankYouBox {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  max-width: 420px;
+  width: 100%;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.thankYouTitle {
+  color: #4caf50;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 15px 0 10px;
+}
+
+.thankYouText {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.backBtn {
+  background: #720856;
+  color: #fff;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.backBtn:hover {
+  background: #590441;
+  transform: scale(1.02);
+}
+
+/* 🌿 Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🌿 Responsive Design */
+@media (max-width: 768px) {
+  .formBox {
+    padding: 25px 20px;
+  }
+
+  .heading {
+    font-size: 22px;
+  }
+
+  .submitBtn {
+    font-size: 15px;
+    padding: 12px 0;
+  }
+
+  .radioGroup {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formBox {
+    padding: 20px 15px;
+  }
+
+  .heading {
+    font-size: 20px;
+  }
+
+  .submitBtn {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .thankYouTitle {
+    font-size: 22px;
+  }
+
+  .thankYouText {
+    font-size: 14px;
+  }
+}

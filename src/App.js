@@ -17,6 +17,7 @@ const Success = lazy(() => import("./component/Success"));
 const Paycash = lazy(() => import("./component/Paycash"));
 const UpdateContactForm = lazy(() => import("./component/UpdateContactForm"));
 const Complaint = lazy(() => import("./component/Complaint"));
+const MealPreferenceForm= lazy(() => import("./component/MealPreferenceForm"));
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/paycash" element={<Paycash />} />
           <Route path="/UpdateContactForm" element={<UpdateContactForm />} />
           <Route path="/complaint" element={<Complaint />} />
+          <Route path="/MealPreferenceForm" element={<MealPreferenceForm />} />
         </Routes>
       </Suspense>
     </Router>

@@ -1,92 +1,114 @@
 import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import styles from "../css/RenewalForm.module.css";
 import logo from "../assets/images/logo.png";
-import "../css/RenewalForm.css"; // component-specific CSS
 
 const RenewalForm = () => {
-  const [orderNo, setOrderNo] = useState("");
-  const [location, setLocation] = useState("Old");
-  const [errors, setErrors] = useState({});
+  const { control, handleSubmit, reset } = useForm({
+    defaultValues: {
+      orderNo: "",
+      location: "Old",
+    },
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const newErrors = {};
-    if (!orderNo.trim()) newErrors.orderNo = "Order number is required";
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      const formData = { orderNo, location };
-      console.log("Form Data:", formData);
-
-      alert("Form submitted successfully!");
-      setOrderNo("");
-      setLocation("Old");
-    }
+  const onSubmit = (data) => {
+    console.log("Form Data:", data);
+    setIsSubmitted(true);
+    reset();
   };
 
+  const handleBack = () => {
+    setIsSubmitted(false);
+  };
+
+  if (isSubmitted) {
+    return (
+      <div className={styles.thankYouContainer}>
+        <div className={styles.thankYouBox}>
+          <img src={logo} alt="MYMEALS Logo" className={styles.logo} />
+          <h2 className={styles.thankYouTitle}>Thank You! 🎉</h2>
+          <p className={styles.thankYouText}>
+            Thank you for showing concern. Your renewal request has been received.
+            <br />
+            You’ll get a confirmation via email shortly.
+          </p>
+          <button className={styles.backBtn} onClick={handleBack}>
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="renewalForm-container">
-      <div className="renewalForm-wrapper">
-        <div className="renewalForm-logoContainer">
-          <img src={logo} alt="Logo" className="renewalForm-logo" />
+    <div className={styles.pageContainer}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.formBox}>
+        {/* Logo */}
+        <div className={styles.logoContainer}>
+          <img src={logo} alt="MYMEALS Logo" className={styles.logo} />
         </div>
 
-        <h2 className="renewalForm-heading">Renewal</h2>
+        <h2 className={styles.heading}>Renewal</h2>
 
-        <form onSubmit={handleSubmit}>
-          <div className="renewalForm-group">
-            <label htmlFor="orderNo" className="renewalForm-label">
-              Order No *
-            </label>
+        {/* Order No */}
+        <label className={styles.label}>Order No.</label>
+        <Controller
+          name="orderNo"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
             <input
+              {...field}
               type="number"
-              id="orderNo"
-              className="renewalForm-input"
-              value={orderNo}
-              onChange={(e) => setOrderNo(e.target.value)}
-              placeholder="Enter order number"
+              className={styles.input}
+              placeholder="Enter your Order Number"
+              required
             />
-            {errors.orderNo && (
-              <p className="renewalForm-error">{errors.orderNo}</p>
-            )}
-          </div>
+          )}
+        />
 
-          <label className="renewalForm-label">Location *</label>
-          <p className="renewalForm-subtext">
-            Please proceed only if you are continuing with the same delivery
-            location or have confirmed the new delivery location with the
-            MYMEALS team.
-          </p>
+        {/* Location */}
+        <label className={styles.label}>Location *</label>
+        <p className={styles.subtext}>
+          Please proceed only if you are continuing with the same delivery
+          location or have confirmed the new Delivery Location with the{" "}
+          <span className={styles.brand}>MYMEALS Team</span>.
+        </p>
 
-          <div className="renewalForm-radioGroup">
-            <label className="renewalForm-radioRow">
-              <input
-                type="radio"
-                name="location"
-                value="Old"
-                checked={location === "Old"}
-                onChange={(e) => setLocation(e.target.value)}
-              />
-              Old
-            </label>
-            <label className="renewalForm-radioRow">
-              <input
-                type="radio"
-                name="location"
-                value="New"
-                checked={location === "New"}
-                onChange={(e) => setLocation(e.target.value)}
-              />
-              New
-            </label>
-          </div>
+        <Controller
+          name="location"
+          control={control}
+          render={({ field }) => (
+            <div className={styles.radioGroup}>
+              <label className={styles.radioOption}>
+                <input
+                  type="radio"
+                  value="Old"
+                  checked={field.value === "Old"}
+                  onChange={() => field.onChange("Old")}
+                />
+                Old
+              </label>
+              <label className={styles.radioOption}>
+                <input
+                  type="radio"
+                  value="New"
+                  checked={field.value === "New"}
+                  onChange={() => field.onChange("New")}
+                />
+                New
+              </label>
+            </div>
+          )}
+        />
 
-          <button type="submit" className="renewalForm-submitBtn">
-            Submit
-          </button>
-        </form>
-      </div>
+        {/* Submit Button */}
+        <button type="submit" className={styles.submitBtn}>
+          Submit
+        </button>
+      </form>
     </div>
   );
 };
