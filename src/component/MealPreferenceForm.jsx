@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import styles from "../css/MealPreference.module.css";
+import logo from "../assets/images/logo.png";
 
 const MealPreferenceForm = () => {
   const [step, setStep] = useState(1);
@@ -51,73 +52,48 @@ const MealPreferenceForm = () => {
   return (
     <div className={styles.formContainer}>
       <div className={styles.formCard}>
-        {/* Logo */}
+        {/* Logo Image */}
         <div className={styles.logoContainer}>
-          <div className={styles.logoCircle}>
-            <h2 className={styles.logoText}>mymeals</h2>
-          </div>
+          <img src={logo} alt="Logo" className={styles.logoImage} />
         </div>
 
         {!submitted ? (
           <>
-            <h2 className={styles.title}>Change your Meal Preference</h2>
+            <h2 className={styles.title}>Change Your Meal Preference</h2>
 
             {/* STEP 1 */}
             {step === 1 && (
-              <form onSubmit={handleNext}>
-                <div className={styles.inputGroup}>
-                  <label>Order no. *</label>
-                  <input
-                    type="text"
-                    name="orderNo"
-                    value={formData.orderNo}
-                    onChange={handleChange}
-                    placeholder="Enter order number"
-                    required
-                  />
-                </div>
-
-                <div className={styles.inputGroup}>
-                  <label>Name *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Enter your name"
-                    required
-                  />
-                </div>
-
-                <div className={styles.inputGroup}>
-                  <label>Email *</label>
-                  <div className={styles.iconInput}>
-                    <FaEnvelope className={styles.icon} />
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Enter your email"
-                      required
-                    />
+              <form onSubmit={handleNext} className={styles.formStep}>
+                {["orderNo", "name", "email", "phone"].map((field) => (
+                  <div className={styles.inputGroup} key={field}>
+                    <label>
+                      {field === "orderNo" && "Order No *"}
+                      {field === "name" && "Name *"}
+                      {field === "email" && "Email *"}
+                      {field === "phone" && "Phone *"}
+                    </label>
+                    <div
+                      className={
+                        field === "email" || field === "phone"
+                          ? styles.iconInput
+                          : ""
+                      }
+                    >
+                      {field === "email" && <FaEnvelope className={styles.icon} />}
+                      {field === "phone" && <FaPhoneAlt className={styles.icon} />}
+                      <input
+                        type={field === "email" ? "email" : "text"}
+                        name={field}
+                        placeholder={`Enter ${field.replace(/^\w/, (c) =>
+                          c.toUpperCase()
+                        )}`}
+                        value={formData[field]}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
                   </div>
-                </div>
-
-                <div className={styles.inputGroup}>
-                  <label>Phone number *</label>
-                  <div className={styles.iconInput}>
-                    <FaPhoneAlt className={styles.icon} />
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+91 XXXXX XXXXX"
-                      required
-                    />
-                  </div>
-                </div>
+                ))}
 
                 <div className={styles.inputGroup}>
                   <label>Plan *</label>
@@ -146,14 +122,11 @@ const MealPreferenceForm = () => {
 
             {/* STEP 2 */}
             {step === 2 && (
-              <form onSubmit={handleFinalSubmit}>
-                <h3 className={styles.subtitle}>Effective</h3>
+              <form onSubmit={handleFinalSubmit} className={styles.formStep}>
+                <h3 className={styles.subtitle}>Effective From</h3>
 
                 <div className={styles.inputGroup}>
-                  <label>From *</label>
-                  <p className={styles.helperText}>
-                    Meals will be served as per changes from mentioned date.
-                  </p>
+                  <label>Date *</label>
                   <input
                     type="date"
                     name="effectiveFrom"
@@ -161,10 +134,13 @@ const MealPreferenceForm = () => {
                     onChange={handleChange}
                     required
                   />
+                  <p className={styles.helperText}>
+                    Meals will be served as per changes from this date.
+                  </p>
                 </div>
 
                 <div className={styles.toggleRow}>
-                  <span>Veg or Nonveg</span>
+                  <span>Veg or Non-Veg</span>
                   <label className={styles.toggleSwitch}>
                     <input
                       type="checkbox"
@@ -178,7 +154,7 @@ const MealPreferenceForm = () => {
                 {toggles.vegNonveg && (
                   <div className={styles.fadeIn}>
                     <div className={styles.inputGroup}>
-                      <label>Meal type</label>
+                      <label>Meal Type</label>
                       <div className={styles.radioGroup}>
                         {["Veg", "Non Veg", "Both"].map((option) => (
                           <label key={option}>
@@ -187,7 +163,7 @@ const MealPreferenceForm = () => {
                               name="mealType"
                               value={option}
                               onChange={handleChange}
-                            />{" "}
+                            />
                             {option}
                           </label>
                         ))}
@@ -195,7 +171,7 @@ const MealPreferenceForm = () => {
                     </div>
 
                     <div className={styles.inputGroup}>
-                      <label>Any Non-veg Item you would not prefer</label>
+                      <label>Any Non-Veg Item you would not prefer</label>
                       <input
                         type="text"
                         name="avoidNonVeg"
@@ -260,9 +236,9 @@ const MealPreferenceForm = () => {
               </form>
             )}
 
-            {/* STEP 3 */}
+            {/* STEP 3: Preview */}
             {step === 3 && (
-              <div>
+              <div className={styles.formStep}>
                 <h3 className={styles.subtitle}>Your Preferences</h3>
                 <div className={styles.summaryBox}>
                   {Object.entries({
