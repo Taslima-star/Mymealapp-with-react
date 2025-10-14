@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
-import styles from "../css/MealPreference.module.css"; 
+import styles from "../css/MealPreference.module.css";
 
 const MealPreferenceForm = () => {
   const [step, setStep] = useState(1);
@@ -147,13 +147,13 @@ const MealPreferenceForm = () => {
             {/* STEP 2 */}
             {step === 2 && (
               <form onSubmit={handleFinalSubmit}>
-                <h3 className={styles.title}>Effective</h3>
+                <h3 className={styles.subtitle}>Effective</h3>
 
                 <div className={styles.inputGroup}>
-                  <label>
-                    From <span>*</span>
-                  </label>
-                  <p>Meals will be served as per changes from mentioned date.</p>
+                  <label>From *</label>
+                  <p className={styles.helperText}>
+                    Meals will be served as per changes from mentioned date.
+                  </p>
                   <input
                     type="date"
                     name="effectiveFrom"
@@ -163,51 +163,34 @@ const MealPreferenceForm = () => {
                   />
                 </div>
 
-                {/* Veg/Non-Veg */}
                 <div className={styles.toggleRow}>
-                  <label>Veg or Nonveg</label>
+                  <span>Veg or Nonveg</span>
                   <label className={styles.toggleSwitch}>
                     <input
                       type="checkbox"
                       checked={toggles.vegNonveg}
                       onChange={() => toggleSwitch("vegNonveg")}
                     />
-                    <span></span>
+                    <span className={styles.slider}></span>
                   </label>
                 </div>
 
                 {toggles.vegNonveg && (
-                  <div>
+                  <div className={styles.fadeIn}>
                     <div className={styles.inputGroup}>
                       <label>Meal type</label>
-                      <div>
-                        <label>
-                          <input
-                            type="radio"
-                            name="mealType"
-                            value="Veg"
-                            onChange={handleChange}
-                          />{" "}
-                          Veg
-                        </label>{" "}
-                        <label>
-                          <input
-                            type="radio"
-                            name="mealType"
-                            value="Non Veg"
-                            onChange={handleChange}
-                          />{" "}
-                          Non Veg
-                        </label>{" "}
-                        <label>
-                          <input
-                            type="radio"
-                            name="mealType"
-                            value="Both"
-                            onChange={handleChange}
-                          />{" "}
-                          Both
-                        </label>
+                      <div className={styles.radioGroup}>
+                        {["Veg", "Non Veg", "Both"].map((option) => (
+                          <label key={option}>
+                            <input
+                              type="radio"
+                              name="mealType"
+                              value={option}
+                              onChange={handleChange}
+                            />{" "}
+                            {option}
+                          </label>
+                        ))}
                       </div>
                     </div>
 
@@ -235,47 +218,22 @@ const MealPreferenceForm = () => {
                   </div>
                 )}
 
-                {/* Lunch Toggle */}
-                <div className={styles.toggleRow}>
-                  <label>Lunch</label>
-                  <label className={styles.toggleSwitch}>
-                    <input
-                      type="checkbox"
-                      checked={toggles.lunch}
-                      onChange={() => toggleSwitch("lunch")}
-                    />
-                    <span></span>
-                  </label>
-                </div>
-
-                {/* Dinner Toggle */}
-                <div className={styles.toggleRow}>
-                  <label>Dinner</label>
-                  <label className={styles.toggleSwitch}>
-                    <input
-                      type="checkbox"
-                      checked={toggles.dinner}
-                      onChange={() => toggleSwitch("dinner")}
-                    />
-                    <span></span>
-                  </label>
-                </div>
-
-                {/* Dish Choice Toggle */}
-                <div className={styles.toggleRow}>
-                  <label>Dish Choice</label>
-                  <label className={styles.toggleSwitch}>
-                    <input
-                      type="checkbox"
-                      checked={toggles.dishChoice}
-                      onChange={() => toggleSwitch("dishChoice")}
-                    />
-                    <span></span>
-                  </label>
-                </div>
+                {["lunch", "dinner", "dishChoice"].map((key) => (
+                  <div key={key} className={styles.toggleRow}>
+                    <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                    <label className={styles.toggleSwitch}>
+                      <input
+                        type="checkbox"
+                        checked={toggles[key]}
+                        onChange={() => toggleSwitch(key)}
+                      />
+                      <span className={styles.slider}></span>
+                    </label>
+                  </div>
+                ))}
 
                 {toggles.dishChoice && (
-                  <div className={styles.inputGroup}>
+                  <div className={`${styles.inputGroup} ${styles.fadeIn}`}>
                     <label>Dish Choice</label>
                     <input
                       type="text"
@@ -302,10 +260,10 @@ const MealPreferenceForm = () => {
               </form>
             )}
 
-            {/* STEP 3 - SUMMARY */}
+            {/* STEP 3 */}
             {step === 3 && (
               <div>
-                <h3 className={styles.title}>Your Preferences</h3>
+                <h3 className={styles.subtitle}>Your Preferences</h3>
                 <div className={styles.summaryBox}>
                   {Object.entries({
                     "Order No.": formData.orderNo,
@@ -341,20 +299,19 @@ const MealPreferenceForm = () => {
                     className={styles.primaryBtn}
                     onClick={handleFinalConfirm}
                   >
-                    Submit
+                    Confirm
                   </button>
                 </div>
               </div>
             )}
           </>
         ) : (
-          // ✅ FINAL THANK YOU MESSAGE
           <div className={styles.thankyouBox}>
             <h2 className={styles.title}>Thank You!</h2>
             <p>
-              We have noted your changes in meal preference.
+              We’ve noted your changes in meal preference.
               <br />
-              Will revert you back through mail.
+              You’ll receive an email confirmation soon.
             </p>
           </div>
         )}

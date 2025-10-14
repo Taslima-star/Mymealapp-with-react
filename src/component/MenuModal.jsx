@@ -24,7 +24,7 @@ const MenuModal = () => {
           Change Your Meal Preference
         </button>
 
-        <button className="menu-button" onClick={() => alert("Change delivery location feature coming soon!")}>
+        <button className="menu-button" onClick={() => navigate("/Changedeliverylocation")}>
           Change Your Delivery Location
         </button>
 

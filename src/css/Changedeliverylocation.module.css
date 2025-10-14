@@ -1,0 +1,218 @@
+/* Container */
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eaf5f0, #c9f0e1);
+  padding: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Form Card */
+.formCard {
+  background-color: #ffffff;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 750px;
+  transition: transform 0.3s ease;
+}
+
+.formCard:hover {
+  transform: translateY(-3px);
+}
+
+/* Logo */
+.logo {
+  display: block;
+  margin: 0 auto 15px;
+  width: 100px;
+  height: auto;
+}
+
+/* Title */
+.formTitle {
+  text-align: center;
+  color: #2e7d5c;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+}
+
+/* Step Section */
+.step {
+  margin-top: 15px;
+}
+
+/* Step Headings */
+.step h3 {
+  color: #2e7d5c;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+/* Inputs and select */
+.inputField {
+  display: block;
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #c9e0d8;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.inputField:focus {
+  border-color: #2e7d5c;
+  box-shadow: 0 0 5px rgba(46, 125, 92, 0.3);
+  outline: none;
+}
+
+/* Checkbox & Radio Group */
+.checkboxGroup,
+.radioGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Buttons */
+.btnGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  background-color: #2e7d5c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #24664b;
+  transform: translateY(-2px);
+}
+
+.nextBtn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+/* Info Text */
+.infoText {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Address section */
+.addressGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.addressGroup input {
+  margin-bottom: 10px;
+}
+
+/* Preview Box */
+.previewBox {
+  background: #f7f9f7;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #c9e0d8;
+  font-size: 0.95rem;
+  max-height: 350px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  box-shadow: inset 0 2px 5px rgba(46, 125, 92, 0.05);
+  margin-bottom: 20px;
+}
+
+/* Thank You Message */
+.thankYou {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.thankYou h2 {
+  font-size: 1.8rem;
+  color: #2e7d5c;
+  margin-bottom: 15px;
+}
+
+.thankYou p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formCard {
+    padding: 25px 20px;
+  }
+
+  .btnGroup {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .checkboxGroup,
+  .radioGroup {
+    flex-direction: column;
+  }
+
+  .addressGroup {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .formTitle {
+    font-size: 1.5rem;
+  }
+
+  .step h3 {
+    font-size: 1.2rem;
+  }
+
+  .inputField {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .previewBox {
+    max-height: 250px;
+    padding: 15px;
+  }
+}

@@ -5,107 +5,95 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #eaf9f3, #c9e8da);
+  padding: 24px;
+  background: radial-gradient(circle at top left, #e8f8f1, #d2ece0);
   font-family: 'Poppins', sans-serif;
-  padding: 20px;
 }
 
-/* ---------- Card ---------- */
 .formCard {
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  padding: 45px 40px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 40px 36px;
   width: 100%;
-  max-width: 500px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 520px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
 .formCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
 }
 
-/* ---------- Logo ---------- */
 .logoContainer {
   display: flex;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .logoCircle {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background: #ffffff;
+  background: linear-gradient(135deg, #f0f2f1, #edf2f0);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 12px rgba(56, 180, 123, 0.25);
-  transition: transform 0.3s ease;
-}
-
-.logoCircle:hover {
-  transform: rotate(3deg) scale(1.05);
+  color: #3adba8;
+  box-shadow: 0 4px 12px rgba(247, 251, 249, 0.923);
 }
 
 .logoText {
-  color: #36b37e;
+  font-size: 1.2rem;
   font-weight: 700;
-  font-size: 22px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
-/* ---------- Title ---------- */
 .title {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 600;
   color: #2b5a44;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 
-/* ---------- Inputs ---------- */
+.subtitle {
+  text-align: center;
+  color: #2b5a44;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
 .inputGroup {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .inputGroup label {
   font-weight: 500;
-  color: #344e41;
   margin-bottom: 6px;
-  font-size: 0.95rem;
+  color: #355d4b;
 }
 
 .inputGroup input,
 .inputGroup select {
-  border: 1.5px solid #d7e8df;
+  border: 1.4px solid #dcece2;
   border-radius: 10px;
-  padding: 11px 13px;
+  padding: 10px 13px;
   font-size: 0.95rem;
-  color: #333;
   outline: none;
-  background-color: #fdfdfd;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
 }
 
 .inputGroup input:focus,
 .inputGroup select:focus {
-  border-color: #4bb883;
-  box-shadow: 0 0 6px rgba(75, 184, 131, 0.3);
-  background-color: #ffffff;
+  border-color: #43b57a;
+  box-shadow: 0 0 6px rgba(67, 181, 122, 0.25);
 }
 
-/* ---------- Input with Icon ---------- */
 .iconInput {
   position: relative;
-}
-
-.iconInput input {
-  width: 100%;
-  padding-left: 40px;
 }
 
 .icon {
@@ -113,47 +101,119 @@
   top: 50%;
   left: 13px;
   transform: translateY(-50%);
-  font-size: 1.1rem;
-  color: #4bb883;
+  color: #43b57a;
+}
+
+.iconInput input {
+  padding-left: 38px;
 }
 
 /* ---------- Buttons ---------- */
-.primaryBtn {
-  width: 100%;
+.primaryBtn,
+.secondaryBtn {
   border: none;
-  outline: none;
   cursor: pointer;
-  padding: 12px 22px;
+  padding: 11px 22px;
   font-size: 1rem;
   border-radius: 10px;
   font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.primaryBtn {
   background: linear-gradient(135deg, #43b57a, #34a26e);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(67, 181, 122, 0.25);
-  transition: all 0.3s ease;
-  margin-top: 8px;
+  width: 100%;
 }
 
 .primaryBtn:hover {
   background: linear-gradient(135deg, #36a46d, #2e8d5f);
-  box-shadow: 0 6px 16px rgba(67, 181, 122, 0.3);
   transform: translateY(-2px);
 }
 
-/* ---------- Summary Box ---------- */
+.secondaryBtn {
+  background: #e9f6ef;
+  color: #2f6a4d;
+}
+
+.secondaryBtn:hover {
+  background: #d7efe2;
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+/* ---------- Toggle ---------- */
+.toggleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0;
+  font-weight: 500;
+  color: #345f49;
+}
+
+.toggleSwitch {
+  position: relative;
+  width: 46px;
+  height: 26px;
+}
+
+.toggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.3s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.toggleSwitch input:checked + .slider {
+  background-color: #43b57a;
+}
+
+.toggleSwitch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* ---------- Summary ---------- */
 .summaryBox {
-  background-color: #f5faf7;
-  padding: 18px;
-  border-radius: 12px;
+  background: #f7fbf8;
   border: 1px solid #d9efe2;
-  margin-top: 20px;
+  border-radius: 12px;
+  padding: 16px;
 }
 
 .summaryItem {
   display: flex;
   justify-content: space-between;
   padding: 6px 0;
-  border-bottom: 1px dashed #d5e8dc;
+  border-bottom: 1px dashed #d9efe2;
 }
 
 .summaryItem:last-child {
@@ -161,73 +221,57 @@
 }
 
 .summaryLabel {
-  color: #3b6452;
+  color: #3a634f;
   font-weight: 500;
 }
 
 .summaryValue {
-  color: #2a2a2a;
+  color: #222;
 }
 
-/* ---------- Thank You ---------- */
 .thankyouBox {
   text-align: center;
-  color: #2e5b45;
-  margin-top: 25px;
+  color: #2f6a4d;
+  margin-top: 30px;
 }
 
-.thankyouBox p {
-  font-size: 1rem;
-  margin-top: 10px;
+.helperText {
+  font-size: 0.85rem;
+  color: #5f8272;
+  margin-bottom: 6px;
+}
+
+.fadeIn {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .formCard {
-    padding: 35px 25px;
-    border-radius: 16px;
+    padding: 28px 22px;
   }
 
   .title {
     font-size: 1.25rem;
   }
 
-  .logoCircle {
-    width: 75px;
-    height: 75px;
-  }
-
-  .logoText {
-    font-size: 18px;
-  }
-
-  .primaryBtn {
-    font-size: 0.95rem;
-    padding: 11px 18px;
-  }
-}
-
-@media (max-width: 480px) {
-  .formContainer {
-    padding: 15px;
-  }
-
-  .formCard {
-    padding: 28px 18px;
-  }
-
-  .inputGroup label {
+  .primaryBtn,
+  .secondaryBtn {
     font-size: 0.9rem;
   }
 
-  .inputGroup input,
-  .inputGroup select {
-    font-size: 0.9rem;
-    padding: 10px 12px;
-  }
-
-  .primaryBtn {
-    font-size: 0.9rem;
-    padding: 10px 16px;
+  .buttonRow {
+    flex-direction: column;
   }
 }
