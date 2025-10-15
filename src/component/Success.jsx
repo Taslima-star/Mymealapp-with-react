@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../css/Success.css";
 import logo from "../assets/images/logo.png";
+import backgroundImage from "../assets/images/bg.png";
 
 export default function Success() {
   const [agree, setAgree] = useState(false);
@@ -15,7 +16,10 @@ export default function Success() {
   };
 
   return (
-    <div className="success-container">
+    <div
+      className="success-container"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       {step === "reminder" ? (
         <div className="card">
           <h1 className="title">Thank you for your payment!</h1>

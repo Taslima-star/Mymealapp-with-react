@@ -19,6 +19,17 @@
   border: none;
   cursor: pointer;
   /* display: none; */
+  /* background: #104b45; */
+    color: #fff;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 10px;
+    transition: background 0.3s 
+ease;
 }
 
 .search-input {

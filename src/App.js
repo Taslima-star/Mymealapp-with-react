@@ -5,21 +5,22 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 // Lazy load components (only load when visited)
 const WelcomePage = lazy(() => import("./component/WelcomePage"));
 const Login = lazy(() => import("./component/login"));
-const Service = lazy(() => import("./component/Service"));
+const Service = lazy(() => import("./component/Service/Service"));
 const Dashboard = lazy(() => import("./component/Dashboard"));
-const MyMealsOrderForm = lazy(() => import("./component/MyMealsOrderForm"));
+const MyMealsOrderForm = lazy(() => import("./component/MyMealsOrderForm/MyMealsOrderForm"));
 const RenewalForm = lazy(() => import("./component/RenewalPayment/RenewalPayment"));
 const PauseResumeMeals = lazy(() => import("./component/PauseResumeMeals/PauseResumeMeals"));
 const FeedbackForm = lazy(() => import("./component/FeedbackForm/FeedbackForm"));
 const MenuModal = lazy(() => import("./component/MenuModal"));
-const CustomerForm = lazy(() => import("./component/CustomerForm"));
+const CustomerForm = lazy(() => import("./component/CustomerForm/CustomerForm"));
 const Success = lazy(() => import("./component/Success"));
-const Paycash = lazy(() => import("./component/Paycash"));
+const Paycash = lazy(() => import("./component/Paycash/Paycash"));
 const UpdateContactForm = lazy(() => import("./component/UpdateContactForm/UpdateContactForm"));
 const Complaint = lazy(() => import("./component/Complaint/Complaint"));
 const MealPreferenceForm = lazy(() => import("./component/MealPreferenceForm/MealPreferenceForm"));
 // Updated path: make sure folder and file names match exactly
 const Changedeliverylocation = lazy(() => import("./component/ChangeDeliveryLocation/Changedeliverylocation"));
+const  TransactionsTable = lazy(() => import("./component/TransactionsTable"));
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/complaint" element={<Complaint />} />
           <Route path="/MealPreferenceForm" element={<MealPreferenceForm />} />
           <Route path="/Changedeliverylocation" element={<Changedeliverylocation />} />
+          <Route path="/TransactionsTable" element={<TransactionsTable />} />
         </Routes>
       </Suspense>
     </Router>

@@ -10,7 +10,7 @@ import UpdateForm from "./UpdateForm";
 import ThankYouMessage from "./ThankYouMessage";
 
 const UpdateContactForm = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [step, setStep] = useState("form");
 
   const [formData, setFormData] = useState({

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import styles from "../../css/MealPreference.module.css";
 
-import Header from "../Header";
-import Sidebar from "../Sidebar";
+import Header from '../Header';
+import Sidebar from '../Sidebar';
 
 import "../../css/dashboard.css";
 import bgImage from "../../assets/images/bg.png";
+
+
 
 import Step1UserInfo from "./Step1UserInfo";
 import Step2MealDetails from "./Step2MealDetails";
@@ -13,7 +15,7 @@ import Step3Preview from "./Step3Preview";
 import ThankYou from "./ThankYou";
 
 const MealPreferenceForm = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
 

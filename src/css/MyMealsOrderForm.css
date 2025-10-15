@@ -1,25 +1,51 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-/* 🌿 Container */
-.mymeals-form-container {
-  max-width: 650px;
-  margin: 40px auto;
-  padding: 30px 25px;
-  background: linear-gradient(135deg, #f5f9f8, #dee8e4);
-  color: #1f1d1d;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+/* 🌄 Full Page Background */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
   font-family: "Poppins", sans-serif;
+  background-color: #f9fafb;
+}
+
+.mymeals-page-bg {
+  background-image: url("../assets/images/bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  backdrop-filter: blur(2px);
+}
+
+/* 🌿 Glass Form Card */
+.mymeals-form-card {
+  width: 100%;
+  max-width: 720px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+  color: #1f1d1d;
+  animation: fadeInUp 0.6s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* ✨ Title */
 .mymeals-form-title {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 28px;
   color: #2e7d5c;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* 🧾 Input Groups */
@@ -44,6 +70,7 @@
   font-size: 15px;
   outline: none;
   transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 .mymeals-input-group input:focus,
@@ -69,21 +96,21 @@
   cursor: pointer;
   font-weight: 600;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 15px;
   transition: all 0.3s ease;
 }
 
 .mymeals-btn:hover {
   background: linear-gradient(135deg, #a1326a, #861f6a);
   transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* 💰 Payment Container */
+/* 💰 Payment Section */
 .mymeals-payment-container {
   margin-top: 25px;
   padding: 20px;
-  background-color: #f7f2f7;
+  background-color: rgba(247, 242, 247, 0.9);
   border-radius: 15px;
   border: 2px solid #861f6a;
   box-shadow: 0 5px 15px rgba(134, 31, 106, 0.15);
@@ -111,7 +138,7 @@
   color: #2e7d5c;
 }
 
-/* 🗺️ Elegant Map Styling */
+/* 🗺️ Map Styling */
 .mymeals-map-container {
   margin: 20px 0;
   border-radius: 12px;
@@ -128,17 +155,17 @@
   border-radius: 12px;
 }
 
-/* Glowing border when address filled */
+/* Glowing border when active */
 .mymeals-map-container.active {
   box-shadow: 0 0 10px #861f6a, 0 0 20px rgba(134, 31, 106, 0.4);
 }
 
-/* Elegant placeholder */
+/* Placeholder Map */
 .mymeals-map-placeholder {
   color: #fff;
   text-align: center;
   padding: 30px 10px;
-  background: linear-gradient(135deg, #2e7d5cff, #861f6aff);
+  background: linear-gradient(135deg, #2e7d5c, #861f6a);
   border-radius: 12px;
   font-style: italic;
   font-size: 17px;
@@ -174,11 +201,22 @@
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* 📱 Responsive */
 @media screen and (max-width: 700px) {
-  .mymeals-form-container {
-    padding: 20px 15px;
-    margin: 20px;
+  .mymeals-form-card {
+    padding: 25px 18px;
+    margin: 10px;
   }
 
   .mymeals-form-title {

@@ -12,7 +12,7 @@ import OverallFeedback from "./OverallFeedback";
 import ThankYou from "./ThankYou";
 
 const FeedbackForm = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // ✅ Added
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // ✅ Added
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({

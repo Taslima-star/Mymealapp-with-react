@@ -1,32 +1,4 @@
-/* ✅ Page Layout */
-.pageContainer {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 30px 15px;
-  font-family: "Poppins", sans-serif;
-  animation: fadeIn 0.7s ease;
-}
-
-/* ✅ Title */
-.title {
-  font-size: 36px;
-  font-weight: 700;
-  color: #ff4500;
-  margin-bottom: 25px;
-  text-align: center;
-  letter-spacing: 0.5px;
-}
-
-
-
-/* ✅ Carousel Image */
-.carouselImg {
-  width: 100%;
-  height: 650px;/*  */
+/* === Page Container === */
 .pageContainer {
   min-height: 100vh;
   display: flex;
@@ -36,23 +8,27 @@
   background-color: #fff;
   padding: 30px 15px;
   font-family: "Poppins", sans-serif;
+  animation: fadeIn 0.7s ease;
 }
 
-/* ✅ Title */
+/* === Title === */
 .title {
   font-size: 34px;
   font-weight: 700;
   color: #ff4500;
   margin-bottom: 25px;
   text-align: center;
+  letter-spacing: 0.5px;
 }
 
-/* ✅ Carousel Styling (no wrapper) */
-.carouselCustom {
+/* === Carousel Wrapper === */
+.carouselWrapper {
   width: 100%;
   max-width: 1200px;
   margin-bottom: 25px;
   position: relative;
+  overflow: hidden;
+  border-radius: 15px;
 }
 
 .carouselImg {
@@ -61,158 +37,6 @@
   object-fit: contain;
   background-color: #ffffff;
   padding: 10px;
-}
-
-/* ✅ White controls & indicators */
-.carouselCustom .carousel-control-prev-icon,
-.carouselCustom .carousel-control-next-icon {
-  filter: invert(1);
-}
-
-.carouselCustom .carousel-indicators [data-coreui-target] {
-  background-color: #ffffff;
-}
-
-/* ✅ Warning box */
-.warning {
-  background-color: rgba(255, 111, 0, 0.1);
-  border: 1px solid rgba(255, 111, 0, 0.3);
-  border-radius: 10px;
-  padding: 15px 20px;
-  font-size: 15px;
-  color: #444;
-  margin-bottom: 25px;
-  text-align: center;
-  max-width: 800px;
-}
-
-/* ✅ Toggle section */
-.toggleSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 25px;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 54px;
-  height: 30px;
-  margin-bottom: 10px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 34px;
-}
-
-.slider::before {
-  position: absolute;
-  content: "";
-  height: 24px;
-  width: 24px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #ff4500;
-}
-
-input:checked + .slider::before {
-  transform: translateX(24px);
-}
-
-/* ✅ Note */
-.note {
-  font-size: 14px;
-  color: #555;
-  max-width: 600px;
-  line-height: 1.6;
-  text-align: center;
-}
-
-.phoneLink {
-  color: #ff4500;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.phoneLink:hover {
-  text-decoration: underline;
-}
-
-/* ✅ Button */
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-}
-
-.proceedBtn {
-  background-color: #ff4500;
-  color: #fff;
-  border: none;
-  font-size: 17px;
-  padding: 14px 36px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-}
-
-.proceedBtn:hover {
-  background-color: #ff5e19;
-  transform: translateY(-2px);
-}
-
-.disabledBtn {
-  background-color: #b6d0c3;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* ✅ Responsive */
-@media (max-width: 992px) {
-  .carouselImg {
-    height: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .carouselImg {
-    height: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carouselImg {
-    height: 230px;
-  }
-  .title {
-    font-size: 24px;
-  }
-}
-
-  object-fit: contain;
-  background-color: #ffffff;
-  padding: 20px;
   transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
@@ -222,7 +46,57 @@ input:checked + .slider::before {
   cursor: pointer;
 }
 
-/* ✅ Warning Box */
+/* === Custom Controls Wrapper === */
+.carouselControls {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0 15px;
+}
+
+.controlButton {
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.controlButton:hover {
+  background-color: rgba(255, 69, 0, 0.9);
+  transform: scale(1.1);
+}
+
+/* === Indicators Wrapper === */
+.carouselIndicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 6px;
+}
+
+.indicatorDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeDot {
+  background-color: #ff4500;
+}
+
+/* === Warning Box === */
 .warning {
   background-color: rgba(255, 111, 0, 0.1);
   border: 1px solid rgba(255, 111, 0, 0.3);
@@ -242,7 +116,7 @@ input:checked + .slider::before {
   color: #2e7d5c;
 }
 
-/* ✅ Toggle Section */
+/* === Toggle Section === */
 .toggleSection {
   display: flex;
   flex-direction: column;
@@ -288,15 +162,15 @@ input:checked + .slider::before {
   border-radius: 50%;
 }
 
-input:checked + .slider {
+.switch input:checked + .slider {
   background-color: #ff4500;
 }
 
-input:checked + .slider::before {
+.switch input:checked + .slider::before {
   transform: translateX(24px);
 }
 
-/* ✅ Acknowledge Note */
+/* === Acknowledge Note === */
 .note {
   font-size: 14px;
   color: #555;
@@ -315,7 +189,7 @@ input:checked + .slider::before {
   text-decoration: underline;
 }
 
-/* ✅ Proceed Button Centered */
+/* === Proceed Button === */
 .buttonContainer {
   display: flex;
   justify-content: center;
@@ -346,20 +220,19 @@ input:checked + .slider::before {
   transform: none;
 }
 
-/* ✅ Fade-in Animation */
+/* === Animations === */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(15px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ✅ Responsive Design */
+/* === Responsive Design === */
 @media (max-width: 992px) {
   .title {
     font-size: 32px;

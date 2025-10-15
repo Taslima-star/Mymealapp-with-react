@@ -15,7 +15,7 @@ import Step6Preview from "./Step6Preview";
 import Step7ThankYou from "./Step7ThankYou";
 
 const Changedeliverylocation = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [step, setStep] = useState(1);
   const [confirmed, setConfirmed] = useState(false);
 
@@ -41,7 +41,7 @@ const Changedeliverylocation = () => {
     secondaryZip: "",
   });
 
-  // ✅ handle change
+  // ✅ handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox" && name === "meals") {
@@ -59,12 +59,12 @@ const Changedeliverylocation = () => {
   // ✅ step navigation
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setStep(7);
   };
 
-  // ✅ main return (single clean structure)
   return (
     <div className="dashboard-layout">
       {/* Sidebar */}
@@ -87,19 +87,17 @@ const Changedeliverylocation = () => {
         >
           <div className="empty-dashboard">
             <div className={styles.formContainer}>
-              
+              {/* Step 1 */}
+              <Step1BasicInfo
+                formData={formData}
+                handleChange={handleChange}
+                confirmed={confirmed}
+                setConfirmed={setConfirmed}
+                nextStep={nextStep}
+              />
 
-              {/* Step-based rendering */}
-              {step === 1 && (
-                <Step1BasicInfo
-                  formData={formData}
-                  handleChange={handleChange}
-                  confirmed={confirmed}
-                  setConfirmed={setConfirmed}
-                  nextStep={nextStep}
-                />
-              )}
-              {step === 2 && (
+              {/* Step 2 */}
+              {step >= 2 && (
                 <Step2EffectiveDate
                   formData={formData}
                   handleChange={handleChange}
@@ -107,7 +105,9 @@ const Changedeliverylocation = () => {
                   prevStep={prevStep}
                 />
               )}
-              {step === 3 && (
+
+              {/* Step 3 */}
+              {step >= 3 && (
                 <Step3Meals
                   formData={formData}
                   handleChange={handleChange}
@@ -115,7 +115,9 @@ const Changedeliverylocation = () => {
                   prevStep={prevStep}
                 />
               )}
-              {step === 4 && (
+
+              {/* Step 4 */}
+              {step >= 4 && (
                 <Step4ChangeFor
                   formData={formData}
                   handleChange={handleChange}
@@ -123,7 +125,9 @@ const Changedeliverylocation = () => {
                   prevStep={prevStep}
                 />
               )}
-              {step === 5 && (
+
+              {/* Step 5 */}
+              {step >= 5 && (
                 <Step5Address
                   formData={formData}
                   handleChange={handleChange}
@@ -131,13 +135,17 @@ const Changedeliverylocation = () => {
                   prevStep={prevStep}
                 />
               )}
-              {step === 6 && (
+
+              {/* Step 6 */}
+              {step >= 6 && (
                 <Step6Preview
                   formData={formData}
                   handleSubmit={handleSubmit}
                   prevStep={prevStep}
                 />
               )}
+
+              {/* Step 7 */}
               {step === 7 && <Step7ThankYou />}
             </div>
           </div>

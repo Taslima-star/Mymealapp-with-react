@@ -11,7 +11,7 @@ import ComplaintForm from "./ComplaintForm";
 import ThankYou from "./ThankYou";
 
 const Complaint = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); 
   const [step, setStep] = useState("order");
 
   const [orderData, setOrderData] = useState({
@@ -57,6 +57,7 @@ const Complaint = () => {
             <div className="form-wrapper">
               <div className="card">
                 {/* Step-based rendering inside card */}
+                 <h2 className="heading">Raise a Complaint</h2>
                 {step === "order" && (
                   <OrderDetailsForm
                     orderData={orderData}

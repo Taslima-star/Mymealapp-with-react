@@ -28,7 +28,7 @@ const ComplaintForm = ({ complaintData, setComplaintData, setStep }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="heading">Raise a Complaint</h2>
+     
 
       <label>Complaint Type *</label>
       <div className="checkbox-group">

@@ -1,20 +1,30 @@
-/* === General Container === */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* === Full Page Background === */
 .success-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #fff0f6, #ffe4e1);
+  background-image: url("../assets/images/bg.png"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-family: "Poppins", sans-serif;
   padding: 20px;
+  position: relative;
 }
+
+
 
 /* === Card Style (for both screens) === */
 .card,
 .thankyou-card {
-  background: #ffffff;
+  position: relative;
+  z-index: 1; /* Above overlay */
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   padding: 40px 30px;
   max-width: 480px;
   text-align: center;
@@ -108,7 +118,7 @@
 
 .check {
   font-size: 50px;
-  color: #4CAF50;
+  color: #4caf50;
   margin: 15px 0;
   animation: pop 0.6s ease;
 }
