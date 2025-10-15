@@ -5,7 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 // Lazy load components (only load when visited)
 const WelcomePage = lazy(() => import("./component/WelcomePage"));
 const Login = lazy(() => import("./component/login"));
-const Service = lazy(() => import("./component/Service/Service"));
+const Service = lazy(() => import("./component/Service"));
 const Dashboard = lazy(() => import("./component/Dashboard"));
 const MyMealsOrderForm = lazy(() => import("./component/MyMealsOrderForm/MyMealsOrderForm"));
 const RenewalForm = lazy(() => import("./component/RenewalPayment/RenewalPayment"));

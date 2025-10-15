@@ -1,127 +1,91 @@
-/* === Page Container === */
 .pageContainer {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: #fff;
-  padding: 30px 15px;
+  padding: 40px 20px;
   font-family: "Poppins", sans-serif;
-  animation: fadeIn 0.7s ease;
+  background-color: #f0f4f8;
+  
 }
 
-/* === Title === */
 .title {
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 700;
   color: #ff4500;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   text-align: center;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
-/* === Carousel Wrapper === */
+/* Carousel wrapper hides overflow */
 .carouselWrapper {
   width: 100%;
-  max-width: 1200px;
-  margin-bottom: 25px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 15px;
+  max-width: 1000px;
+  overflow: hidden; /* hide partial images */
+  margin-bottom: 20px;
 }
 
+/* Carousel inner - images aligned horizontally */
+.carouselInner {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+/* Images occupy full width */
 .carouselImg {
   width: 100%;
-  height: 600px;
-  object-fit: contain;
-  background-color: #ffffff;
-  padding: 10px;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  height: 600px; /* increased height */
+  flex-shrink: 0; 
+  object-fit: contain; /* keeps entire image visible */
+  border-radius: 15px;
+  
 }
 
-.carouselImg:hover {
-  transform: scale(1.03);
-  opacity: 0.95;
-  cursor: pointer;
+.imageText {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
 }
 
-/* === Custom Controls Wrapper === */
-.carouselControls {
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-  padding: 0 15px;
-}
-
-.controlButton {
-  width: 35px;
-  height: 35px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.controlButton:hover {
-  background-color: rgba(255, 69, 0, 0.9);
-  transform: scale(1.1);
-}
-
-/* === Indicators Wrapper === */
-.carouselIndicators {
+.indicatorContainer {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
-  gap: 6px;
+  margin-top: 15px;
+  gap: 8px;
 }
 
-.indicatorDot {
+.dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
+  background: #ccc;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .activeDot {
-  background-color: #ff4500;
+  background: #ff4500;
+  width: 12px;
+  height: 12px;
 }
 
-/* === Warning Box === */
-.warning {
-  background-color: rgba(255, 111, 0, 0.1);
-  border: 1px solid rgba(255, 111, 0, 0.3);
-  border-radius: 10px;
-  padding: 15px 20px;
-  font-size: 15px;
-  color: #444;
-  margin-bottom: 25px;
-  line-height: 1.6;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  max-width: 850px;
+.warningText {
+  color: #ff7f50;
+  font-weight: 600;
   text-align: center;
+  margin: 15px 20px;
+  line-height: 1.5;
 }
 
-.brand {
-  font-weight: 700;
-  color: #2e7d5c;
-}
-
-/* === Toggle Section === */
-.toggleSection {
+.checkboxContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-bottom: 25px;
+  margin: 25px 0;
+  gap: 15px;
 }
 
 .switch {
@@ -129,7 +93,6 @@
   display: inline-block;
   width: 54px;
   height: 30px;
-  margin-bottom: 10px;
 }
 
 .switch input {
@@ -146,8 +109,8 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: 0.4s;
   border-radius: 34px;
+  transition: 0.4s;
 }
 
 .slider::before {
@@ -158,8 +121,8 @@
   left: 3px;
   bottom: 3px;
   background-color: white;
-  transition: 0.4s;
   border-radius: 50%;
+  transition: 0.4s;
 }
 
 .switch input:checked + .slider {
@@ -170,103 +133,45 @@
   transform: translateX(24px);
 }
 
-/* === Acknowledge Note === */
-.note {
-  font-size: 14px;
+.checkboxText {
   color: #555;
-  max-width: 600px;
-  line-height: 1.6;
-  text-align: center;
+  font-size: 16px;
+  flex: 1;
 }
 
 .phoneLink {
-  color: #ff4500;
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
+  color: #ff4500;
+  transition: color 0.3s ease;
 }
 
 .phoneLink:hover {
-  text-decoration: underline;
+  color: #ff7f50;
 }
 
-/* === Proceed Button === */
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 25px;
-}
-
-.proceedBtn {
+.button {
+  width: 60%; 
+  max-width: 250px;
+  padding: 16px 0;
+  border-radius: 50px;
   background-color: #ff4500;
   color: #fff;
-  border: none;
   font-size: 18px;
-  padding: 15px 40px;
-  border-radius: 30px;
+  font-weight: 600;
+  margin: 25px 0 40px;
+  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-weight: 600;
 }
 
-.proceedBtn:hover {
-  background-color: #ff5714;
+.button:hover {
+  background-color: #ff6a33;
   transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-.disabledBtn {
-  background-color: #b6d0c3;
+.buttonDisabled {
+  background-color: #ccc;
   cursor: not-allowed;
-  transform: none;
-}
-
-/* === Animations === */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* === Responsive Design === */
-@media (max-width: 992px) {
-  .title {
-    font-size: 32px;
-  }
-  .carouselImg {
-    height: 420px;
-  }
-}
-
-@media (max-width: 768px) {
-  .title {
-    font-size: 28px;
-  }
-  .carouselImg {
-    height: 320px;
-  }
-  .warning {
-    font-size: 14px;
-    padding: 12px 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 22px;
-  }
-  .carouselImg {
-    height: 240px;
-  }
-  .proceedBtn {
-    font-size: 15px;
-    padding: 12px 28px;
-  }
-  .note {
-    font-size: 13px;
-  }
 }
