@@ -16,7 +16,7 @@ const MenuModal = () => {
           Pause and Resume
         </button>
 
-        <button className="menu-button" onClick={() => navigate("/RenewalForm")}>
+        <button className="menu-button" onClick={() => navigate("/RenewalPayment")}>
           Renewal
         </button>
 

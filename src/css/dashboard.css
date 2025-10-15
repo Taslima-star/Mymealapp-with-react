@@ -10,7 +10,7 @@
   flex-direction: column;
   overflow: hidden;
   transition: margin-left 0.3s ease-in-out;
-  margin-left: 16rem;
+  /* margin-left: 16rem; */
 }
 
 .dashboard-main.sidebar-open {

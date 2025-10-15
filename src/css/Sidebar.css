@@ -43,6 +43,11 @@
   transition: background 0.2s;
 }
 
+.sidebar-nav ul li a{
+    text-decoration: none;
+
+}
+
 .sidebar-nav li:hover,
 .sidebar-nav li.active {
   background-color: #e9efff;

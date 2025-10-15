@@ -6,7 +6,7 @@ const Header = ({ toggleSidebar }) => {
   return (
     <header className="dashboard-header">
       <div className="left-section">
-        <button className="menu-toggle" onClick={toggleSidebar}>
+        <button type="button" title="menu" className="menu-toggle" onClick={toggleSidebar}>
           <FaBars />
         </button>
       </div>

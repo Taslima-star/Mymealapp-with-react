@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../css/login.css';
-import bg from '../assets/images/bg.png'; // ✅ Import background image
+import bg from '../assets/images/bg.png'; 
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ const Form = () => {
     <div
       className="login-container"
       style={{
-        backgroundImage: `url(${bg})`,   // ✅ Use imported image
+        backgroundImage: `url(${bg})`,   
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

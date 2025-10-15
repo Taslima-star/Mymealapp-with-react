@@ -8,23 +8,22 @@ const Login = lazy(() => import("./component/login"));
 const Service = lazy(() => import("./component/Service"));
 const Dashboard = lazy(() => import("./component/Dashboard"));
 const MyMealsOrderForm = lazy(() => import("./component/MyMealsOrderForm"));
-const RenewalForm = lazy(() => import("./component/RenewalForm"));
-const PauseResumeMeals = lazy(() => import("./component/PauseResumeMeals"));
-const FeedbackForm = lazy(() => import("./component/FeedbackForm"));
+const RenewalForm = lazy(() => import("./component/RenewalPayment/RenewalPayment"));
+const PauseResumeMeals = lazy(() => import("./component/PauseResumeMeals/PauseResumeMeals"));
+const FeedbackForm = lazy(() => import("./component/FeedbackForm/FeedbackForm"));
 const MenuModal = lazy(() => import("./component/MenuModal"));
 const CustomerForm = lazy(() => import("./component/CustomerForm"));
 const Success = lazy(() => import("./component/Success"));
 const Paycash = lazy(() => import("./component/Paycash"));
-const UpdateContactForm = lazy(() => import("./component/UpdateContactForm"));
-const Complaint = lazy(() => import("./component/Complaint"));
-const MealPreferenceForm = lazy(() => import("./component/MealPreferenceForm"));
-const Changedeliverylocation = lazy(() => import("./component/Changedeliverylocation"));
-
+const UpdateContactForm = lazy(() => import("./component/UpdateContactForm/UpdateContactForm"));
+const Complaint = lazy(() => import("./component/Complaint/Complaint"));
+const MealPreferenceForm = lazy(() => import("./component/MealPreferenceForm/MealPreferenceForm"));
+// Updated path: make sure folder and file names match exactly
+const Changedeliverylocation = lazy(() => import("./component/ChangeDeliveryLocation/Changedeliverylocation"));
 
 const App = () => {
   return (
     <Router>
-      {/* Suspense ensures components load on demand with fallback */}
       <Suspense fallback={<div className="loading">Loading...</div>}>
         <Routes>
           <Route path="/" element={<WelcomePage />} />
@@ -32,7 +31,7 @@ const App = () => {
           <Route path="/service" element={<Service />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/MyMealsOrderForm" element={<MyMealsOrderForm />} />
-          <Route path="/RenewalForm" element={<RenewalForm />} />
+          <Route path="/RenewalPayment" element={<RenewalForm />} />
           <Route path="/PauseResumeMeals" element={<PauseResumeMeals />} />
           <Route path="/FeedbackForm" element={<FeedbackForm />} />
           <Route path="/menu" element={<MenuModal />} />
