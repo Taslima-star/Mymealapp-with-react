@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styles from "../../css/Changedeliverylocation.module.css";
-import logo from "../../assets/images/logo.png";
+import Header from "../Header";
+import Sidebar from "../Sidebar";
+
+import "../../css/dashboard.css";
+import bgImage from "../../assets/images/bg.png";
 
 import Step1BasicInfo from "./Step1BasicInfo";
 import Step2EffectiveDate from "./Step2EffectiveDate";
@@ -11,6 +15,7 @@ import Step6Preview from "./Step6Preview";
 import Step7ThankYou from "./Step7ThankYou";
 
 const Changedeliverylocation = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const [step, setStep] = useState(1);
   const [confirmed, setConfirmed] = useState(false);
 
@@ -36,6 +41,7 @@ const Changedeliverylocation = () => {
     secondaryZip: "",
   });
 
+  // ✅ handle change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox" && name === "meals") {
@@ -50,6 +56,7 @@ const Changedeliverylocation = () => {
     }
   };
 
+  // ✅ step navigation
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
   const handleSubmit = (e) => {
@@ -57,61 +64,84 @@ const Changedeliverylocation = () => {
     setStep(7);
   };
 
+  // ✅ main return (single clean structure)
   return (
-    <div className={styles.formContainer}>
-      <div className={styles.formCard}>
-        <img src={logo} alt="Logo" className={styles.logo} />
-        <h2 className={styles.formTitle}>Change Delivery Location</h2>
+    <div className="dashboard-layout">
+      {/* Sidebar */}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
 
-        {step === 1 && (
-          <Step1BasicInfo
-            formData={formData}
-            handleChange={handleChange}
-            confirmed={confirmed}
-            setConfirmed={setConfirmed}
-            nextStep={nextStep}
-          />
-        )}
-        {step === 2 && (
-          <Step2EffectiveDate
-            formData={formData}
-            handleChange={handleChange}
-            nextStep={nextStep}
-            prevStep={prevStep}
-          />
-        )}
-        {step === 3 && (
-          <Step3Meals
-            formData={formData}
-            handleChange={handleChange}
-            nextStep={nextStep}
-            prevStep={prevStep}
-          />
-        )}
-        {step === 4 && (
-          <Step4ChangeFor
-            formData={formData}
-            handleChange={handleChange}
-            nextStep={nextStep}
-            prevStep={prevStep}
-          />
-        )}
-        {step === 5 && (
-          <Step5Address
-            formData={formData}
-            handleChange={handleChange}
-            nextStep={nextStep}
-            prevStep={prevStep}
-          />
-        )}
-        {step === 6 && (
-          <Step6Preview
-            formData={formData}
-            handleSubmit={handleSubmit}
-            prevStep={prevStep}
-          />
-        )}
-        {step === 7 && <Step7ThankYou />}
+      {/* Main Content */}
+      <div className={`dashboard-main ${isSidebarOpen ? "sidebar-open" : ""}`}>
+        <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+
+        <main
+          className="dashboard-content"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="empty-dashboard">
+            <div className={styles.formContainer}>
+              
+
+              {/* Step-based rendering */}
+              {step === 1 && (
+                <Step1BasicInfo
+                  formData={formData}
+                  handleChange={handleChange}
+                  confirmed={confirmed}
+                  setConfirmed={setConfirmed}
+                  nextStep={nextStep}
+                />
+              )}
+              {step === 2 && (
+                <Step2EffectiveDate
+                  formData={formData}
+                  handleChange={handleChange}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              )}
+              {step === 3 && (
+                <Step3Meals
+                  formData={formData}
+                  handleChange={handleChange}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              )}
+              {step === 4 && (
+                <Step4ChangeFor
+                  formData={formData}
+                  handleChange={handleChange}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              )}
+              {step === 5 && (
+                <Step5Address
+                  formData={formData}
+                  handleChange={handleChange}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              )}
+              {step === 6 && (
+                <Step6Preview
+                  formData={formData}
+                  handleSubmit={handleSubmit}
+                  prevStep={prevStep}
+                />
+              )}
+              {step === 7 && <Step7ThankYou />}
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );

@@ -27,19 +27,19 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <FaRedoAlt /> <a href="RenewalPayment">Renewal</a>
           </li>
           <li>
-            <FaUtensils /> Change Your Meal Preference
+            <FaUtensils /> <a href="MealPreferenceForm">Change Your Meal Preference</a> 
           </li>
           <li>
-            <FaMapMarkerAlt /> Change Your Delivery Location
+            <FaMapMarkerAlt /><a href="Changedeliverylocation">Change Your Delivery Location</a> 
           </li>
           <li>
-            <FaPhoneAlt /> Update Contact No.
+            <FaPhoneAlt /><a href="UpdateContactForm">Update Contact No.</a> 
           </li>
           <li>
-            <FaExclamationCircle /> Raise a Complaint
+            <FaExclamationCircle /><a href="Complaint"> Raise a Complaint</a>
           </li>
           <li>
-            <FaCommentDots /> Feedback
+            <FaCommentDots /><a href="FeedbackForm">Feedback</a> 
           </li>
         </ul>
       </nav>

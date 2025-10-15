@@ -18,6 +18,7 @@ const Step1UserInfo = ({
 
   return (
     <div className={styles.step}>
+      <h2 className={styles.formTitle}>Change Delivery Location</h2>
       <p className={styles.infoText}>
         Please share your location through WhatsApp for confirmation before proceeding.
       </p>

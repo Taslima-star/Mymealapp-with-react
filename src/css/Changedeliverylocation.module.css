@@ -3,34 +3,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #eaf5f0, #c9f0e1);
-  padding: 15px;
+  min-height: 50vh;
+  max-width: 600px;
+  background-color: #fff;
+  padding: 20px;
   font-family: 'Poppins', sans-serif;
 }
 
 /* Form Card */
-.formCard {
-  background-color: #ffffff;
-  padding: 30px 25px;
-  border-radius: 15px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 750px;
-  transition: transform 0.3s ease;
-}
+
 
 .formCard:hover {
   transform: translateY(-3px);
 }
 
-/* Logo */
-.logo {
-  display: block;
-  margin: 0 auto 15px;
-  width: 100px;
-  height: auto;
-}
+
 
 /* Title */
 .formTitle {

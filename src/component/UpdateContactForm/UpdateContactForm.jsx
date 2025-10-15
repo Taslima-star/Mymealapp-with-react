@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "../../css/UpdateContactForm.css";
-import logo from "../../assets/images/logo.png";
+import Header from "../Header";
+import Sidebar from "../Sidebar";
+
+import "../../css/dashboard.css";
+import bgImage from "../../assets/images/bg.png";
 
 import UpdateForm from "./UpdateForm";
 import ThankYouMessage from "./ThankYouMessage";
 
 const UpdateContactForm = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [step, setStep] = useState("form");
 
   const [formData, setFormData] = useState({
@@ -18,21 +23,39 @@ const UpdateContactForm = () => {
   });
 
   return (
-    <div className="update-form-container">
-      <div className="update-card">
-        <div className="update-logo-circle">
-          <img src={logo} alt="MyMeals Logo" className="update-logo-img" />
-        </div>
+    <div className="dashboard-layout">
+      {/* Sidebar */}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
 
-        {step === "form" ? (
-          <UpdateForm
-            formData={formData}
-            setFormData={setFormData}
-            setStep={setStep}
-          />
-        ) : (
-          <ThankYouMessage />
-        )}
+      {/* Main Content */}
+      <div className={`dashboard-main ${isSidebarOpen ? "sidebar-open" : ""}`}>
+        <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+
+        <main
+          className="dashboard-content"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="empty-dashboard">
+            <div className="update-card">
+              {step === "form" ? (
+                <UpdateForm
+                  formData={formData}
+                  setFormData={setFormData}
+                  setStep={setStep}
+                />
+              ) : (
+                <ThankYouMessage />
+              )}
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );

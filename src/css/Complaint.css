@@ -3,14 +3,7 @@
 
 
 /* Centering form properly */
-.form-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #d9f3e4, #eefaf5);
-}
+
 
 /* Elegant glass card */
 .card {

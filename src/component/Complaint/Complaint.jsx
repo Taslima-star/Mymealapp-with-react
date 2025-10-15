@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import "../../css/Complaint.css";
-import logo from "../../assets/images/logo.png";
-import { IoArrowForward } from "react-icons/io5";
+import Header from "../Header";
+import Sidebar from "../Sidebar";
+
+import "../../css/dashboard.css";
+import bgImage from "../../assets/images/bg.png";
 
 import OrderDetailsForm from "./OrderDetailsForm";
 import ComplaintForm from "./ComplaintForm";
 import ThankYou from "./ThankYou";
 
 const Complaint = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const [step, setStep] = useState("order");
 
   const [orderData, setOrderData] = useState({
@@ -30,29 +34,50 @@ const Complaint = () => {
   });
 
   return (
-    <div className="form-wrapper">
-      <div className="card">
-        <div className="logo-container">
-          <img src={logo} alt="mymeals logo" className="logo-img" />
-        </div>
+    <div className="dashboard-layout">
+      {/* Sidebar */}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
 
-        {step === "order" && (
-          <OrderDetailsForm
-            orderData={orderData}
-            setOrderData={setOrderData}
-            setStep={setStep}
-          />
-        )}
+      {/* Main Content */}
+      <div className={`dashboard-main ${isSidebarOpen ? "sidebar-open" : ""}`}>
+        <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
-        {step === "complaint" && (
-          <ComplaintForm
-            complaintData={complaintData}
-            setComplaintData={setComplaintData}
-            setStep={setStep}
-          />
-        )}
+        <main
+          className="dashboard-content"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="empty-dashboard">
+            <div className="form-wrapper">
+              <div className="card">
+                {/* Step-based rendering inside card */}
+                {step === "order" && (
+                  <OrderDetailsForm
+                    orderData={orderData}
+                    setOrderData={setOrderData}
+                    setStep={setStep}
+                  />
+                )}
 
-        {step === "thankyou" && <ThankYou />}
+                {step === "complaint" && (
+                  <ComplaintForm
+                    complaintData={complaintData}
+                    setComplaintData={setComplaintData}
+                    setStep={setStep}
+                  />
+                )}
+
+                {step === "thankyou" && <ThankYou />}
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );

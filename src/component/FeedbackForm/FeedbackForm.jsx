@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import "../../css/FeedbackForm.css";
-import logo from "../../assets/images/logo.png";
+import Header from "../Header";
+import Sidebar from "../Sidebar";
 
-import FeedbackHeader from "./FeedbackHeader";
+import "../../css/dashboard.css";
+import bgImage from "../../assets/images/bg.png";
+
 import FeedbackInputs from "./FeedbackInputs";
 import FeedbackSection from "./FeedbackSection";
 import OverallFeedback from "./OverallFeedback";
 import ThankYou from "./ThankYou";
 
 const FeedbackForm = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // ✅ Added
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -57,6 +61,8 @@ const FeedbackForm = () => {
     if (!validateFields()) return;
 
     setIsSubmitted(true);
+
+    // Reset form after showing thank you (optional)
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
@@ -80,37 +86,61 @@ const FeedbackForm = () => {
   }
 
   return (
-    <div className="feedback-wrapper">
-      <div className="feedback-card">
-        <FeedbackHeader logo={logo} />
-        <form onSubmit={handleSubmit}>
-          <FeedbackInputs
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-            plans={plans}
-          />
+    <div className="dashboard-layout">
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
 
-          {["Food", "Delivery", "Management"].map((section) => (
-            <FeedbackSection
-              key={section}
-              section={section}
-              ratings={ratings}
-              setRatings={setRatings}
-              ratingOptions={ratingOptions}
-            />
-          ))}
+      <div className={`dashboard-main ${isSidebarOpen ? "sidebar-open" : ""}`}>
+        <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
-          <OverallFeedback
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
+        <main
+          className="dashboard-content"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="empty-dashboard">
 
-          <button type="submit" className="submitButton">
-            Submit Feedback
-          </button>
-        </form>
+
+            <div className="feedback-wrapper">
+              <div className="feedback-card">
+                <h2 className="title">Customer Feedback Form</h2>
+                <form onSubmit={handleSubmit}>
+                  <FeedbackInputs
+                    formData={formData}
+                    handleChange={handleChange}
+                    errors={errors}
+                    plans={plans}
+                  />
+
+                  {["Food", "Delivery", "Management"].map((section) => (
+                    <FeedbackSection
+                      key={section}
+                      section={section}
+                      ratings={ratings}
+                      setRatings={setRatings}
+                      ratingOptions={ratingOptions}
+                    />
+                  ))}
+
+                  <OverallFeedback
+                    formData={formData}
+                    handleChange={handleChange}
+                    errors={errors}
+                  />
+
+                  <button type="submit" className="submitButton">
+                    Submit Feedback
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );

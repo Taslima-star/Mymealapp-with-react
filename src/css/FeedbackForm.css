@@ -1,17 +1,10 @@
-.feedback-wrapper {
-  background: linear-gradient(135deg, #f8f5ff, #e9dcff);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-}
+
 
 .feedback-card {
   background: #fff;
   padding: 40px 35px;
   border-radius: 20px;
-  max-width: 750px;
+  max-width: 650px;
   width: 100%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   transition: all 0.3s ease;

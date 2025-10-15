@@ -55,7 +55,6 @@ const RenewalPayment = () => {
     setStep(1);
   };
 
-  // Payment confirmation view
   if (paymentConfirmed) {
     return (
       <div className="dashboard-layout">
@@ -73,7 +72,6 @@ const RenewalPayment = () => {
     );
   }
 
-  // Main step-based form
   return (
     <div className="dashboard-layout">
       <Sidebar
@@ -91,19 +89,22 @@ const RenewalPayment = () => {
           }}
         >
           <div className="empty-dashboard">
-            {step === 1 && <StepOne control={control} watch={watch} handleNext={handleNext} />}
-            {step === 2 && (
+            {/* Render all steps, but mark inactive ones */}
+            <div style={{ display: step >= 1 ? "block" : "none" }}>
+              <StepOne control={control} watch={watch} handleNext={handleNext} />
+            </div>
+            <div style={{ display: step >= 2 ? "block" : "none" }}>
               <StepTwo control={control} handleNext={handleNext} handleBack={handleBack} />
-            )}
-            {step === 3 && (
+            </div>
+            <div style={{ display: step >= 3 ? "block" : "none" }}>
               <StepThree
                 control={control}
                 watch={watch}
                 handleNext={handleNext}
                 handleBack={handleBack}
               />
-            )}
-            {step === 4 && (
+            </div>
+            <div style={{ display: step >= 4 ? "block" : "none" }}>
               <StepFour
                 control={control}
                 handleSubmit={handleSubmit}
@@ -111,7 +112,7 @@ const RenewalPayment = () => {
                 watch={watch}
                 handleBack={handleBack}
               />
-            )}
+            </div>
           </div>
         </main>
       </div>

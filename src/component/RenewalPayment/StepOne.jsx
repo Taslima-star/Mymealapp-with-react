@@ -1,16 +1,16 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 import style from "../../css/Renewal.module.css";
-import logo from "../../assets/images/logo.png";
+// import logo from "../../assets/images/logo.png";
 
 const StepOne = ({ control, watch, handleNext }) => {
   const watchLocation = watch("location");
 
   return (
     <form className={style.formBox} onSubmit={(e) => e.preventDefault()}>
-      <div className={style.logoContainer}>
+      {/* <div className={style.logoContainer}>
         <img src={logo} alt="MYMEALS Logo" className={style.logo} />
-      </div>
+      </div> */}
       <h2 className={style.heading}>Renewal Form</h2>
 
       <label className={style.label}>Order No.</label>

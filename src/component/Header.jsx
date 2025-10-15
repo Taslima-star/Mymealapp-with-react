@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaBars, FaBell, FaMoon } from 'react-icons/fa';
+import { FaBars, FaBell } from 'react-icons/fa';
 import '../css/header.css';
 
 const Header = ({ toggleSidebar }) => {
@@ -11,9 +11,9 @@ const Header = ({ toggleSidebar }) => {
         </button>
       </div>
       <div className="header-right">
-        <button className="dark-mode-toggle">
+        {/* <button className="dark-mode-toggle">
           <FaMoon />
-        </button>
+        </button> */}
         <div className="notification-bell">
           <FaBell />
           <span className="badge">0</span>
