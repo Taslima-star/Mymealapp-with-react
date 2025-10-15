@@ -1,4 +1,6 @@
-/* ====== FORM CONTAINER ====== */
+/* ===============================
+   FORM CONTAINER
+=============================== */
 .update-form-container {
   min-height: 100vh;
   display: flex;
@@ -8,7 +10,9 @@
   background-color: #fff;
 }
 
-/* ====== CARD ====== */
+/* ===============================
+   CARD
+=============================== */
 .update-card {
   background: #ffffff;
   border-radius: 20px;
@@ -17,9 +21,12 @@
   width: 100%;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   animation: update-fadeIn 0.8s ease-in-out;
+  box-sizing: border-box;
 }
 
-/* ====== LOGO ====== */
+/* ===============================
+   LOGO
+=============================== */
 .update-logo-circle {
   width: 120px;
   height: 120px;
@@ -39,7 +46,9 @@
   object-fit: contain;
 }
 
-/* ====== HEADINGS ====== */
+/* ===============================
+   HEADINGS
+=============================== */
 .update-heading {
   text-align: center;
   color: #2b5140;
@@ -48,7 +57,9 @@
   margin-bottom: 25px;
 }
 
-/* ====== LABELS & INPUTS ====== */
+/* ===============================
+   LABELS
+=============================== */
 .update-label {
   display: block;
   font-size: 14px;
@@ -57,16 +68,28 @@
   margin: 10px 0 5px;
 }
 
+/* ===============================
+   INPUTS & SELECTS
+=============================== */
 .update-input,
 .update-select {
   width: 100%;
-  padding: 12px 14px;
+  padding: 12px 14px; /* ample padding to avoid placeholder overlap */
   border: 1px solid #cfd8d3;
   border-radius: 12px;
   font-size: 14px;
   background: #fafafa;
   outline: none;
   transition: all 0.25s ease;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.update-input::placeholder,
+.update-select::placeholder {
+  color: #999;
+  font-size: 14px;
+  opacity: 1; /* ensures placeholder is fully visible */
 }
 
 .update-input:focus,
@@ -76,7 +99,9 @@
   box-shadow: 0 0 0 3px rgba(75, 127, 103, 0.15);
 }
 
-/* ====== INPUT ICON ====== */
+/* ===============================
+   INPUT WITH ICON
+=============================== */
 .update-input-with-icon {
   display: flex;
   align-items: center;
@@ -104,9 +129,12 @@
   background: transparent;
   outline: none;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
-/* ====== BUTTON ====== */
+/* ===============================
+   BUTTON
+=============================== */
 .update-submit-btn {
   background: linear-gradient(135deg, #2b5140, #3e8366);
   color: white;
@@ -127,7 +155,9 @@
   transform: translateY(-2px);
 }
 
-/* ====== THANK YOU PAGE ====== */
+/* ===============================
+   THANK YOU PAGE
+=============================== */
 .update-thank-container {
   background: linear-gradient(135deg, #eaf5ee, #d7f2e0);
   min-height: 100vh;
@@ -161,7 +191,9 @@
   max-width: 400px;
 }
 
-/* ====== ANIMATIONS ====== */
+/* ===============================
+   ANIMATIONS
+=============================== */
 @keyframes update-fadeIn {
   from {
     opacity: 0;
@@ -184,7 +216,9 @@
   }
 }
 
-/* ====== RESPONSIVE DESIGN ====== */
+/* ===============================
+   RESPONSIVE DESIGN
+=============================== */
 @media (max-width: 768px) {
   .update-card {
     max-width: 95%;
@@ -201,7 +235,8 @@
   }
 
   .update-input,
-  .update-select {
+  .update-select,
+  .update-input-inner {
     font-size: 13px;
     padding: 10px 12px;
   }
@@ -236,7 +271,8 @@
   }
 
   .update-input,
-  .update-select {
+  .update-select,
+  .update-input-inner {
     font-size: 12px;
     padding: 9px 10px;
   }

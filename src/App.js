@@ -14,6 +14,8 @@ const FeedbackForm = lazy(() => import("./component/FeedbackForm/FeedbackForm"))
 const MenuModal = lazy(() => import("./component/MenuModal"));
 const CustomerForm = lazy(() => import("./component/CustomerForm/CustomerForm"));
 const Success = lazy(() => import("./component/Success"));
+const DeliveryLocationTable = lazy(() => import("./component/DeliveryLocationTable"));
+const PauseResumeTable = lazy(() => import("./component/PauseResumeTable"));
 const Paycash = lazy(() => import("./component/Paycash/Paycash"));
 const UpdateContactForm = lazy(() => import("./component/UpdateContactForm/UpdateContactForm"));
 const Complaint = lazy(() => import("./component/Complaint/Complaint"));
@@ -21,6 +23,7 @@ const MealPreferenceForm = lazy(() => import("./component/MealPreferenceForm/Mea
 // Updated path: make sure folder and file names match exactly
 const Changedeliverylocation = lazy(() => import("./component/ChangeDeliveryLocation/Changedeliverylocation"));
 const  TransactionsTable = lazy(() => import("./component/TransactionsTable"));
+const  ComplaintTable = lazy(() => import("./component/ComplaintTable"));
 
 const App = () => {
   return (
@@ -44,6 +47,9 @@ const App = () => {
           <Route path="/MealPreferenceForm" element={<MealPreferenceForm />} />
           <Route path="/Changedeliverylocation" element={<Changedeliverylocation />} />
           <Route path="/TransactionsTable" element={<TransactionsTable />} />
+          <Route path="/DeliveryLocationTable" element={<DeliveryLocationTable />} />
+          <Route path="/PauseResumeTable" element={<PauseResumeTable />} />
+           <Route path="/ComplaintTable" element={<ComplaintTable />} />
         </Routes>
       </Suspense>
     </Router>
