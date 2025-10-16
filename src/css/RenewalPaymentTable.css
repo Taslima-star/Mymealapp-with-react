@@ -1,0 +1,81 @@
+.payment-table-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 30px auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  max-width: 95%;
+  animation: fadeIn 0.5s ease;
+}
+
+.payment-table-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.payment-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1500px;
+}
+
+.payment-table th,
+.payment-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.payment-table th {
+  background-color: #f3f3f3;
+  font-weight: 600;
+}
+
+.payment-table input[type="text"],
+.payment-table input[type="email"],
+.payment-table input[type="number"],
+.payment-table input[type="date"],
+.payment-table input[type="time"] {
+  width: 100%;
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.add-row-btn {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.add-row-btn:hover {
+  background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

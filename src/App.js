@@ -24,6 +24,10 @@ const MealPreferenceForm = lazy(() => import("./component/MealPreferenceForm/Mea
 const Changedeliverylocation = lazy(() => import("./component/ChangeDeliveryLocation/Changedeliverylocation"));
 const  TransactionsTable = lazy(() => import("./component/TransactionsTable"));
 const  ComplaintTable = lazy(() => import("./component/ComplaintTable"));
+const  RenewalPaymentTable = lazy(() => import("./component/RenewalPaymentTable"));
+const  MealPreferenceTable = lazy(() => import("./component/MealPreferenceTable"));
+const  UpdateContactTable = lazy(() => import("./component/UpdateContactTable"));
+const   FeedbackTable= lazy(() => import("./component/FeedbackTable"));
 
 const App = () => {
   return (
@@ -50,6 +54,10 @@ const App = () => {
           <Route path="/DeliveryLocationTable" element={<DeliveryLocationTable />} />
           <Route path="/PauseResumeTable" element={<PauseResumeTable />} />
            <Route path="/ComplaintTable" element={<ComplaintTable />} />
+           <Route path="/RenewalPaymentTable" element={<RenewalPaymentTable />} />
+           <Route path="/MealPreferenceTable" element={<MealPreferenceTable />} />
+                      <Route path="/UpdateContactTable" element={<UpdateContactTable />} />
+                       <Route path="/FeedbackTable" element={<FeedbackTable />} />
         </Routes>
       </Suspense>
     </Router>
