@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import welcomeStyles from "../../css/WelcomePage.module.css";
 import serviceStyles from "../../css/Service.module.css";
 import "../../css/MyMealsOrderForm.css";
@@ -8,7 +9,6 @@ import "../../css/Paycash.css";
 import "../../css/Success.css";
 
 // Images
-import logo from "../../assets/images/logo.png";
 import bg from "../../assets/images/bg.png";
 import meal1 from "../../assets/images/meal.png";
 import service1 from "../../assets/images/service.png";
@@ -38,9 +38,14 @@ export default function WelcomePage() {
 
   // === Payment + Plan States ===
   const [plan, setPlan] = useState("");
+  const [plans, setPlans] = useState([]);        
+  const [meals, setMeals] = useState([]);         
+  const [orders, setOrders] = useState([]);       
+  const [orderMeals, setOrderMeals] = useState([]); 
+  const [payments, setPayments] = useState([]);  
 
   // === Carousel Data ===
-  const carouselData = [
+  const [carouselData, setCarouselData] = useState([
     { id: "1", title: "Item", image: meal1 },
     { id: "2", title: "Our Services", image: service1 },
     { id: "3", title: "Delivery", image: delivery1 },
@@ -50,7 +55,33 @@ export default function WelcomePage() {
     { id: "7", title: "Menu", image: menu1 },
     { id: "8", title: "Lunch", image: lunch1 },
     { id: "9", title: "Dinner", image: dinner1 },
-  ];
+  ]);
+
+  // === Fetch Plans, Meals, Orders, OrderMeals, Payments ===
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [plansRes, mealsRes, ordersRes, orderMealsRes, paymentsRes] =
+          await Promise.all([
+            axios.get("https://your-api.com/api/plans"),
+            axios.get("https://your-api.com/api/meals"),
+            axios.get("https://your-api.com/api/orders"),
+            axios.get("https://your-api.com/api/order-meals"),
+            axios.get("https://your-api.com/api/payments"),
+          ]);
+
+        setPlans(plansRes.data);
+        setMeals(mealsRes.data);
+        setOrders(ordersRes.data);
+        setOrderMeals(orderMealsRes.data);
+        setPayments(paymentsRes.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // === Handlers ===
   const handleWelcomeClick = (action) => {
@@ -98,6 +129,11 @@ export default function WelcomePage() {
           bg={bg}
           plan={plan}
           setPlan={setPlan}
+          plans={plans}
+          meals={meals}
+          orders={orders}          
+          orderMeals={orderMeals}   
+          payments={payments}      
           onSuccess={() => setShowSuccess(true)}
         />
       )}
