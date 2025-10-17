@@ -4,7 +4,7 @@ import bg from "../assets/images/bg.png";
 import axios from "axios";
 
 const Form = () => {
-  const [step, setStep] = useState("email"); // "email" | "otp"
+  const [step, setStep] = useState("email"); 
   const [formData, setFormData] = useState({ email: "", password: "", otp: "" });
 
   // Step 1: Send OTP
