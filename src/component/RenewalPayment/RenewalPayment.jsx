@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 
 import Header from "../Header";
 import Sidebar from "../Sidebar";
+import RenewalPaymentTable from "../RenewalPaymentTable"; 
 
 import "../../css/dashboard.css";
+import "../../css/RenewalPaymentTable.css";
 import bgImage from "../../assets/images/bg.png"; 
 
 import StepOne from "./StepOne";
@@ -45,8 +47,8 @@ const RenewalPayment = () => {
     },
   });
 
-  const handleNext = () => setStep((prev) => prev + 1);
-  const handleBack = () => setStep((prev) => prev - 1);
+  const handleNext = () => setStep(prev => prev + 1);
+  const handleBack = () => setStep(prev => prev - 1);
 
   const onSubmitPayment = (data) => {
     console.log("Payment Data:", data);
@@ -80,38 +82,53 @@ const RenewalPayment = () => {
       />
       <div className={`dashboard-main ${isSidebarOpen ? "sidebar-open" : ""}`}>
         <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+
         <main
           className="dashboard-content"
           style={{
             backgroundImage: `url(${bgImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
+            padding: "20px",
           }}
         >
-          <div className="empty-dashboard">
-            {/* Render all steps, but mark inactive ones */}
-            <div style={{ display: step >= 1 ? "block" : "none" }}>
-              <StepOne control={control} watch={watch} handleNext={handleNext} />
+          <div className="flex-container" style={{ display: "flex", gap: "20px" }}>
+            {/* Form Section */}
+            <div className="form-section" style={{ flex: 1 }}>
+              <div className="container-fluid renew-content">
+                <div style={{ display: step >= 1 ? "block" : "none" }}>
+                  <StepOne control={control} watch={watch} handleNext={handleNext} />
+                </div>
+                <div style={{ display: step >= 2 ? "block" : "none" }}>
+                  <StepTwo control={control} handleNext={handleNext} handleBack={handleBack} />
+                </div>
+                <div style={{ display: step >= 3 ? "block" : "none" }}>
+                  <StepThree
+                    control={control}
+                    watch={watch}
+                    handleNext={handleNext}
+                    handleBack={handleBack}
+                  />
+                </div>
+                <div style={{ display: step >= 4 ? "block" : "none" }}>
+                  <StepFour
+                    control={control}
+                    handleSubmit={handleSubmit}
+                    onSubmitPayment={onSubmitPayment}
+                    watch={watch}
+                    handleBack={handleBack}
+                  />
+                </div>
+              </div>
             </div>
-            <div style={{ display: step >= 2 ? "block" : "none" }}>
-              <StepTwo control={control} handleNext={handleNext} handleBack={handleBack} />
-            </div>
-            <div style={{ display: step >= 3 ? "block" : "none" }}>
-              <StepThree
-                control={control}
-                watch={watch}
-                handleNext={handleNext}
-                handleBack={handleBack}
-              />
-            </div>
-            <div style={{ display: step >= 4 ? "block" : "none" }}>
-              <StepFour
-                control={control}
-                handleSubmit={handleSubmit}
-                onSubmitPayment={onSubmitPayment}
-                watch={watch}
-                handleBack={handleBack}
-              />
+
+            {/* Table Section */}
+            <div
+              className="renew-card table-section"
+              style={{ flex: 1, maxHeight: "80vh", overflowY: "auto" }}
+            >
+              
+              <RenewalPaymentTable />
             </div>
           </div>
         </main>

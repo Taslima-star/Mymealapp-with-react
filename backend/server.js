@@ -10,22 +10,26 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ============================
+// ----------------------------
+// USERS
+// ----------------------------
+
 // GET all users
-// ============================
 app.get("/api/users", (req, res) => {
-  db.query("SELECT id, name, email, phone, created_at FROM users", (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(results);
-  });
+  db.query(
+    "SELECT id, name, email, phone, created_at FROM users",
+    (err, results) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(results);
+    }
+  );
 });
 
-// ============================
 // POST new user (signup)
-// ============================
 app.post("/api/users", (req, res) => {
   const { name, email, password, phone } = req.body;
-  if (!email || !password) return res.status(400).json({ error: "Email and password required" });
+  if (!email || !password)
+    return res.status(400).json({ error: "Email and password required" });
 
   const sql = "INSERT INTO users (name, email, password, phone) VALUES (?, ?, ?, ?)";
   db.query(sql, [name || "", email, password, phone || ""], (err, results) => {
@@ -34,9 +38,11 @@ app.post("/api/users", (req, res) => {
   });
 });
 
-// ============================
+// ----------------------------
+// PLANS & MEALS
+// ----------------------------
+
 // GET all plans
-// ============================
 app.get("/api/plans", (req, res) => {
   db.query("SELECT * FROM plans", (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -44,9 +50,7 @@ app.get("/api/plans", (req, res) => {
   });
 });
 
-// ============================
 // GET all meals
-// ============================
 app.get("/api/meals", (req, res) => {
   db.query("SELECT * FROM meals", (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -54,16 +58,17 @@ app.get("/api/meals", (req, res) => {
   });
 });
 
-// ============================
-// POST new order (calculate total_amount)
-// ============================
+// ----------------------------
+// ORDERS
+// ----------------------------
+
+// POST new order
 app.post("/api/orders", (req, res) => {
   const { user_id, plan_id, meals } = req.body;
   if (!user_id || !plan_id || !meals || !meals.length)
     return res.status(400).json({ error: "User, plan, and meals required" });
 
-  // Calculate total amount based on meal prices
-  const mealIds = meals.map(m => m.meal_id);
+  const mealIds = meals.map((m) => m.meal_id);
   const placeholders = mealIds.map(() => "?").join(",");
   const sql = `SELECT id, price FROM meals WHERE id IN (${placeholders})`;
 
@@ -71,21 +76,19 @@ app.post("/api/orders", (req, res) => {
     if (err) return res.status(500).json({ error: err.message });
 
     let totalAmount = 0;
-    mealResults.forEach(meal => {
-      const quantity = meals.find(m => m.meal_id === meal.id)?.quantity || 1;
+    mealResults.forEach((meal) => {
+      const quantity = meals.find((m) => m.meal_id === meal.id)?.quantity || 1;
       totalAmount += meal.price * quantity;
     });
 
-    // Insert order
-    const orderSql = "INSERT INTO orders (user_id, plan_id, status, total_amount) VALUES (?, ?, 'pending', ?)";
+    const orderSql =
+      "INSERT INTO orders (user_id, plan_id, status, total_amount) VALUES (?, ?, 'pending', ?)";
     db.query(orderSql, [user_id, plan_id, totalAmount], (err2, results) => {
       if (err2) return res.status(500).json({ error: err2.message });
 
       const orderId = results.insertId;
-
-      // Insert order meals
       const mealSql = "INSERT INTO order_meals (order_id, meal_id, quantity) VALUES ?";
-      const mealValues = meals.map(m => [orderId, m.meal_id, m.quantity || 1]);
+      const mealValues = meals.map((m) => [orderId, m.meal_id, m.quantity || 1]);
 
       db.query(mealSql, [mealValues], (err3) => {
         if (err3) return res.status(500).json({ error: err3.message });
@@ -95,9 +98,7 @@ app.post("/api/orders", (req, res) => {
   });
 });
 
-// ============================
 // GET all orders with nested meals
-// ============================
 app.get("/api/orders", (req, res) => {
   const sql = `
     SELECT o.id AS order_id, o.user_id, o.plan_id, o.status, o.total_amount, 
@@ -114,7 +115,7 @@ app.get("/api/orders", (req, res) => {
     const orders = [];
     const map = new Map();
 
-    results.forEach(row => {
+    results.forEach((row) => {
       if (!map.has(row.order_id)) {
         map.set(row.order_id, {
           order_id: row.order_id,
@@ -139,68 +140,82 @@ app.get("/api/orders", (req, res) => {
   });
 });
 
-// ============================
+// ----------------------------
+// OTP HANDLING
+// ----------------------------
+
 // SEND OTP
-// ============================
-app.post("/api/send-otp", async (req, res) => {
+app.post("/api/send-otp", (req, res) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ error: "Email required" });
 
-  const otp = Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
-  console.log("Generated OTP:", otp);
+  const otp = Math.floor(100000 + Math.random() * 900000); // 6-digit
+  const otpExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
-  try {
-    const sql = "UPDATE users SET otp=? WHERE email=?";
-    db.query(sql, [otp, email], async (err, results) => {
+  db.query(
+    "UPDATE users SET otp=?, otp_expires=? WHERE email=?",
+    [otp, otpExpires, email],
+    (err, results) => {
       if (err) return res.status(500).json({ error: err.message });
 
       if (results.affectedRows === 0) {
-        const insert = "INSERT INTO users (email, otp) VALUES (?, ?)";
-        db.query(insert, [email, otp]);
+        db.query(
+          "INSERT INTO users (email, otp, otp_expires) VALUES (?, ?, ?)",
+          [email, otp, otpExpires]
+        );
       }
 
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
           user: "yourgmail@gmail.com",
-          pass: "your-app-password",
+          pass: "your-app-password", // App Password
         },
       });
 
-      await transporter.sendMail({
-        from: "My Meals <yourgmail@gmail.com>",
-        to: email,
-        subject: "Your OTP for My Meals Login",
-        text: `Your OTP is ${otp}. It will expire in 5 minutes.`,
-      });
-
-      res.json({ message: "OTP sent successfully!" });
-    });
-  } catch (err) {
-    console.error("OTP send error:", err);
-    res.status(500).json({ error: "Failed to send OTP" });
-  }
+      transporter
+        .sendMail({
+          from: "My Meals <yourgmail@gmail.com>",
+          to: email,
+          subject: "Your OTP for My Meals Login",
+          text: `Your OTP is ${otp}. It will expire in 5 minutes.`,
+        })
+        .then(() => res.json({ message: "OTP sent successfully!" }))
+        .catch((err) => {
+          console.error("Email error:", err);
+          res.status(500).json({ error: "Failed to send OTP email" });
+        });
+    }
+  );
 });
 
-// ============================
 // VERIFY OTP
-// ============================
 app.post("/api/verify-otp", (req, res) => {
   const { email, otp } = req.body;
-  if (!email || !otp) return res.status(400).json({ error: "Email and OTP required" });
+  if (!email || !otp)
+    return res.status(400).json({ error: "Email and OTP required" });
 
-  const sql = "SELECT * FROM users WHERE email=? AND otp=?";
-  db.query(sql, [email, otp], (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
-    if (results.length > 0) {
-      res.json({ message: "OTP verified successfully!", user: results[0] });
-    } else {
-      res.status(400).json({ error: "Invalid OTP" });
+  db.query(
+    "SELECT * FROM users WHERE email=? AND otp=? AND otp_expires > NOW()",
+    [email, otp],
+    (err, results) => {
+      if (err) return res.status(500).json({ error: err.message });
+
+      if (results.length > 0) {
+        db.query("UPDATE users SET otp=NULL, otp_expires=NULL WHERE email=?", [
+          email,
+        ]);
+        res.json({ message: "OTP verified successfully!", user: results[0] });
+      } else {
+        res.status(400).json({ error: "Invalid or expired OTP" });
+      }
     }
-  });
+  );
 });
 
-// ============================
-// Start server
-// ============================
-app.listen(5000, () => console.log("✅ Server running on http://localhost:5000"));
+// ----------------------------
+// START SERVER
+// ----------------------------
+app.listen(5000, () =>
+  console.log("✅ Server running on http://localhost:5000")
+);

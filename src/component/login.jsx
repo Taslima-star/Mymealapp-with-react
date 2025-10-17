@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Form = () => {
   const [step, setStep] = useState("email"); 
-  const [formData, setFormData] = useState({ email: "", password: "", otp: "" });
+  const [formData, setFormData] = useState({ email: "", otp: "" });
 
   // Step 1: Send OTP
   const sendOTP = async (e) => {
@@ -38,7 +38,6 @@ const Form = () => {
         otp: formData.otp,
       });
       alert(res.data.message);
-      // You can now navigate to dashboard or home
       setStep("success");
     } catch (err) {
       alert(err.response?.data?.error || "Invalid OTP");
@@ -79,19 +78,6 @@ const Form = () => {
                 type="email"
               />
             </div>
-
-            <div className="form-group">
-              <label className="sub-title" htmlFor="password">Password</label>
-              <input
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                id="password"
-                className="form-style"
-                type="password"
-              />
-            </div>
-
             <button className="btn" onClick={sendOTP}>
               Get OTP
             </button>

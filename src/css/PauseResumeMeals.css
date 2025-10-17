@@ -28,15 +28,15 @@
    CARD
 =============================== */
 .pause-card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.8); 
   border-radius: 16px;
   padding: 25px;
-  /* max-width: 480px;
-  width: 100%; */
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
   box-sizing: border-box;
+  backdrop-filter: blur(6px); 
 }
+
 
 .pause-card:hover {
   transform: translateY(-3px);

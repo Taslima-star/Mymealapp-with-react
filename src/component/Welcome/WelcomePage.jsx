@@ -38,7 +38,7 @@ export default function WelcomePage() {
 
   // === Payment + Plan States ===
   const [plan, setPlan] = useState("");
-  const [plans, setPlans] = useState([]);        
+  const [plans, setPlans] = useState([]);         // Dynamic plans
   const [meals, setMeals] = useState([]);         
   const [orders, setOrders] = useState([]);       
   const [orderMeals, setOrderMeals] = useState([]); 
