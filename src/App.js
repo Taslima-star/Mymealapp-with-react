@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // ===== Lazy load components =====
 // Make sure all of these components use `export default`
-const WelcomePage = lazy(() => import("./component/Welcome"));
+const WelcomePage = lazy(() => import("./component/Welcome/WelcomePage"));
 const Login = lazy(() => import("./component/login"));
 const Dashboard = lazy(() => import("./component/Dashboard"));
 const RenewalForm = lazy(() => import("./component/RenewalPayment/RenewalPayment"));
